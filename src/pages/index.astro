@@ -1,0 +1,374 @@
+---
+import Layout from '../layouts/Layout.astro';
+import '../styles/global.css';
+---
+
+<Layout
+  title="Google Stitch MCP — Setup para Claude Code"
+  description="Guía completa para integrar Google Stitch con Claude Code vía MCP. Genera UI designs de alta fidelidad desde prompts de texto."
+>
+  <!-- Header -->
+  <header class="border-b border-surface-border">
+    <div class="mx-auto max-w-4xl px-6 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="flex gap-1">
+          <span class="inline-block h-3 w-3 rounded-full bg-stitch-blue"></span>
+          <span class="inline-block h-3 w-3 rounded-full bg-stitch-red"></span>
+          <span class="inline-block h-3 w-3 rounded-full bg-stitch-yellow"></span>
+          <span class="inline-block h-3 w-3 rounded-full bg-stitch-green"></span>
+        </div>
+        <span class="text-sm font-semibold text-text-secondary">Stitch MCP Guide</span>
+      </div>
+      <a
+        href="https://github.com/gonzalezulises/stitch-mcp-guide"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-sm text-text-muted hover:text-text-primary transition-colors"
+      >
+        GitHub
+      </a>
+    </div>
+  </header>
+
+  <main class="mx-auto max-w-4xl px-6 py-16">
+    <!-- Hero -->
+    <section class="mb-20">
+      <div class="mb-4 inline-flex items-center gap-2 rounded-full border border-surface-border bg-surface-raised px-3 py-1 text-xs text-text-secondary">
+        <span class="inline-block h-2 w-2 rounded-full bg-stitch-green animate-pulse"></span>
+        Google Labs
+      </div>
+      <h1 class="text-4xl font-bold tracking-tight text-white sm:text-5xl">
+        Google Stitch MCP
+      </h1>
+      <p class="mt-2 text-xl text-accent">Setup para Claude Code</p>
+      <p class="mt-6 max-w-2xl text-lg leading-relaxed text-text-secondary">
+        Google Stitch genera UI designs de alta fidelidad desde prompts de texto, powered by Gemini.
+        Se integra con Claude Code via
+        <a href="https://modelcontextprotocol.io/" target="_blank" rel="noopener" class="text-accent hover:text-white transition-colors">MCP</a>
+        usando el paquete
+        <code class="rounded bg-surface-raised px-1.5 py-0.5 text-sm text-accent">@_davideast/stitch-mcp</code>.
+      </p>
+      <p class="mt-4 text-text-secondary">
+        El objetivo: que Claude Code pueda crear proyectos en Stitch, generar pantallas desde texto,
+        obtener el HTML/CSS generado, descargar screenshots, y construir sitios Astro &mdash; todo desde el agente.
+      </p>
+    </section>
+
+    <!-- TOC -->
+    <nav class="mb-16 rounded-xl border border-surface-border bg-surface-raised p-6">
+      <h2 class="mb-4 text-sm font-semibold uppercase tracking-wider text-text-muted">Contenido</h2>
+      <ol class="columns-1 gap-x-8 space-y-2 text-sm sm:columns-2">
+        <li><a href="#prerequisitos" class="text-accent hover:text-white transition-colors">Prerequisitos</a></li>
+        <li><a href="#paso-1" class="text-accent hover:text-white transition-colors">Paso 1 &mdash; Wizard de inicializacion</a></li>
+        <li><a href="#paso-2" class="text-accent hover:text-white transition-colors">Paso 2 &mdash; Verificar configuracion</a></li>
+        <li><a href="#paso-3" class="text-accent hover:text-white transition-colors">Paso 3 &mdash; Configuracion MCP</a></li>
+        <li><a href="#paso-4" class="text-accent hover:text-white transition-colors">Paso 4 &mdash; Reiniciar y verificar</a></li>
+        <li><a href="#tools" class="text-accent hover:text-white transition-colors">Tools MCP disponibles</a></li>
+        <li><a href="#workflow" class="text-accent hover:text-white transition-colors">Workflow tipico</a></li>
+        <li><a href="#env-vars" class="text-accent hover:text-white transition-colors">Variables de entorno</a></li>
+        <li><a href="#design-md" class="text-accent hover:text-white transition-colors">DESIGN.md</a></li>
+        <li><a href="#troubleshooting" class="text-accent hover:text-white transition-colors">Troubleshooting</a></li>
+        <li><a href="#cli" class="text-accent hover:text-white transition-colors">CLI adicional</a></li>
+        <li><a href="#recursos" class="text-accent hover:text-white transition-colors">Recursos y enlaces</a></li>
+      </ol>
+    </nav>
+
+    <!-- Content -->
+    <article class="prose prose-lg max-w-none">
+
+      <!-- Prerequisitos -->
+      <section id="prerequisitos">
+        <h2>Prerequisitos</h2>
+        <div class="not-prose grid gap-3 sm:grid-cols-2">
+          {[
+            { icon: '⬢', label: 'Node.js', desc: 'Requerido para npx', link: 'https://nodejs.org/' },
+            { icon: '▶', label: 'Claude Code', desc: 'Instalado y funcionando', link: 'https://docs.anthropic.com/en/docs/claude-code' },
+            { icon: '◉', label: 'Cuenta Google', desc: 'Gmail — Stitch es gratis (Labs)', link: 'https://stitch.withgoogle.com/' },
+            { icon: '☁', label: 'Google Cloud Project', desc: 'Con billing habilitado', link: 'https://console.cloud.google.com/' },
+          ].map(({ icon, label, desc, link }) => (
+            <a href={link} target="_blank" rel="noopener" class="group flex items-start gap-3 rounded-lg border border-surface-border bg-surface-alt p-4 transition-colors hover:border-accent-dim">
+              <span class="mt-0.5 text-lg text-accent">{icon}</span>
+              <div>
+                <span class="font-medium text-white group-hover:text-accent transition-colors">{label}</span>
+                <p class="mt-0.5 text-sm text-text-muted">{desc}</p>
+              </div>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      <!-- Paso 1 -->
+      <section id="paso-1" class="mt-16">
+        <h2>Paso 1: Ejecutar el wizard de inicializacion</h2>
+        <pre><code class="language-bash">npx @_davideast/stitch-mcp init</code></pre>
+        <p>Este wizard interactivo hace todo:</p>
+        <ul>
+          <li>Verifica/instala <code>gcloud</code> CLI (usa un SDK bundled, no afecta tu instalacion global)</li>
+          <li>Abre el browser para OAuth login con tu cuenta Google</li>
+          <li>Crea o selecciona un proyecto en Google Cloud</li>
+          <li>Habilita la Stitch API (<code>stitch.googleapis.com</code>)</li>
+          <li>Configura el MCP client que elijas (seleccionar <strong>Claude Code</strong>)</li>
+        </ul>
+        <div class="not-prose rounded-lg border border-stitch-yellow/30 bg-stitch-yellow/5 p-4 text-sm text-text-secondary">
+          <strong class="text-stitch-yellow">Nota:</strong> El wizard detecta automaticamente si estas en WSL, SSH, Docker o Cloud Shell. En esos casos, copia manualmente la URL de OAuth que aparece en terminal y abrela en un browser.
+        </div>
+      </section>
+
+      <!-- Paso 2 -->
+      <section id="paso-2" class="mt-16">
+        <h2>Paso 2: Verificar la configuracion</h2>
+        <pre><code class="language-bash">npx @_davideast/stitch-mcp doctor --verbose</code></pre>
+        <p>Esto valida:</p>
+        <ul>
+          <li>Autenticacion OK</li>
+          <li>Proyecto configurado</li>
+          <li>Stitch API habilitada</li>
+          <li>Billing activo</li>
+        </ul>
+      </section>
+
+      <!-- Paso 3 -->
+      <section id="paso-3" class="mt-16">
+        <h2>Paso 3: Configuracion MCP en Claude Code</h2>
+        <p>El wizard del paso 1 deberia haber configurado esto automaticamente. Si no, puedes agregar manualmente con cualquiera de estas opciones:</p>
+
+        <h3>Opcion A: Via CLI de Claude Code</h3>
+        <pre><code class="language-bash">claude mcp add -s user stitch -- npx -y @_davideast/stitch-mcp proxy</code></pre>
+
+        <h3>Opcion B: Editando el archivo de configuracion</h3>
+        <p>Agregar al archivo de configuracion MCP de Claude Code (<code>~/.claude/claude_desktop_config.json</code> o el <code>.mcp.json</code> del proyecto):</p>
+        <pre><code class="language-json">{`{
+  "mcpServers": {
+    "stitch": {
+      "command": "npx",
+      "args": ["@_davideast/stitch-mcp", "proxy"]
+    }
+  }
+}`}</code></pre>
+
+        <h3>Opcion C: Con API Key (mas simple, sin OAuth refresh)</h3>
+        <ol>
+          <li>Ir a <a href="https://stitch.withgoogle.com" target="_blank" rel="noopener">stitch.withgoogle.com</a></li>
+          <li>Click en tu foto de perfil &rarr; Stitch settings &rarr; API key &rarr; Create key</li>
+          <li>Copiar el key</li>
+        </ol>
+        <pre><code class="language-json">{`{
+  "mcpServers": {
+    "stitch": {
+      "command": "npx",
+      "args": ["-y", "stitch-mcp"],
+      "env": {
+        "STITCH_API_KEY": "TU_API_KEY_AQUI"
+      }
+    }
+  }
+}`}</code></pre>
+
+        <div class="not-prose rounded-lg border border-accent-dim/30 bg-accent-dim/5 p-4 text-sm text-text-secondary">
+          <strong class="text-accent">Trade-off:</strong> API Key es mas simple pero menos seguro. OAuth via el proxy maneja refresh automatico de tokens.
+        </div>
+      </section>
+
+      <!-- Paso 4 -->
+      <section id="paso-4" class="mt-16">
+        <h2>Paso 4: Reiniciar Claude Code y verificar</h2>
+        <pre><code class="language-bash"># En Claude Code, verificar que el MCP server aparece
+/mcp</code></pre>
+        <p>Debe aparecer <code>stitch</code> con status healthy. Probar con:</p>
+        <pre><code>List my Stitch projects</code></pre>
+      </section>
+
+      <!-- Tools -->
+      <section id="tools" class="mt-16">
+        <h2>Tools MCP disponibles</h2>
+        <p>Una vez conectado, Claude Code tiene acceso a estos tools:</p>
+        <div class="not-prose overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-surface-border">
+                <th class="py-3 pr-4 text-left font-semibold text-white">Tool</th>
+                <th class="py-3 text-left font-semibold text-white">Descripcion</th>
+              </tr>
+            </thead>
+            <tbody class="text-text-secondary">
+              {[
+                ['create_project', 'Crear un nuevo proyecto en Stitch'],
+                ['generate_screen_from_text', 'Generar una pantalla UI desde un prompt de texto'],
+                ['get_screen', 'Obtener metadata de una pantalla'],
+                ['get_screen_code', 'Obtener el HTML/CSS generado de una pantalla'],
+                ['get_screen_image', 'Obtener screenshot de la pantalla como base64'],
+                ['build_site', 'Construir un sitio Astro mapeando pantallas a rutas'],
+              ].map(([tool, desc]) => (
+                <tr class="border-b border-surface-border/50">
+                  <td class="py-3 pr-4"><code class="rounded bg-surface-raised px-1.5 py-0.5 text-accent">{tool}</code></td>
+                  <td class="py-3">{desc}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Workflow -->
+      <section id="workflow" class="mt-16">
+        <h2>Workflow tipico de uso</h2>
+        <div class="not-prose space-y-3">
+          {[
+            { step: '1', text: '"Crea un proyecto en Stitch llamado \'MiApp\'"' },
+            { step: '2', text: '"Genera una pantalla: landing page dark mode con hero section, 3 feature cards, y pricing table"' },
+            { step: '3', text: '"Obten el HTML/CSS de esa pantalla"' },
+            { step: '4', text: '"Convierte ese HTML a un componente React con Tailwind"' },
+            { step: '5', text: '"Genera las demas pantallas (about, contact, dashboard)"' },
+            { step: '6', text: '"Construye el sitio Astro mapeando cada pantalla a su ruta"' },
+          ].map(({ step, text }) => (
+            <div class="flex items-start gap-4 rounded-lg border border-surface-border bg-surface-alt p-4">
+              <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-accent-dim text-xs font-bold text-white">{step}</span>
+              <span class="text-sm text-text-secondary">{text}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- Env vars -->
+      <section id="env-vars" class="mt-16">
+        <h2>Variables de entorno opcionales</h2>
+        <div class="not-prose overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-surface-border">
+                <th class="py-3 pr-4 text-left font-semibold text-white">Variable</th>
+                <th class="py-3 text-left font-semibold text-white">Uso</th>
+              </tr>
+            </thead>
+            <tbody class="text-text-secondary">
+              {[
+                ['STITCH_API_KEY', 'Autenticacion directa con API key (sin OAuth)'],
+                ['STITCH_ACCESS_TOKEN', 'Token de acceso pre-existente'],
+                ['STITCH_USE_SYSTEM_GCLOUD', 'Usar gcloud del sistema en vez del bundled'],
+                ['STITCH_PROJECT_ID', 'Override del project ID'],
+                ['GOOGLE_CLOUD_PROJECT', 'Project ID alternativo'],
+              ].map(([v, desc]) => (
+                <tr class="border-b border-surface-border/50">
+                  <td class="py-3 pr-4"><code class="rounded bg-surface-raised px-1.5 py-0.5 text-accent">{v}</code></td>
+                  <td class="py-3">{desc}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- DESIGN.md -->
+      <section id="design-md" class="mt-16">
+        <h2>DESIGN.md (design tokens)</h2>
+        <p>
+          Stitch genera un archivo <code>DESIGN.md</code> con los tokens de diseno del proyecto
+          (paleta de colores, tipografia, spacing). Claude Code puede leerlo para mantener
+          consistencia visual al generar codigo backend o componentes adicionales.
+        </p>
+        <p>Para extraer el DESIGN.md:</p>
+        <pre><code>"Usa el Stitch MCP para obtener el proyecto 'MiApp'. Extrae la paleta de colores y tipografia, y genera un archivo DESIGN.md en el directorio raiz."</code></pre>
+      </section>
+
+      <!-- Troubleshooting -->
+      <section id="troubleshooting" class="mt-16">
+        <h2>Troubleshooting</h2>
+
+        <h3>"Permission Denied"</h3>
+        <ul>
+          <li>Verificar rol Owner/Editor en el proyecto GCP</li>
+          <li>Verificar billing habilitado</li>
+          <li>Ejecutar <code>npx @_davideast/stitch-mcp doctor --verbose</code></li>
+        </ul>
+
+        <h3>API Key no funciona con el proxy</h3>
+        <p>El proxy requiere OAuth. Si usas API key, configuralo via env var, no mezclar metodos.</p>
+
+        <h3>Token expirado</h3>
+        <p>El proxy con <code>@_davideast/stitch-mcp</code> maneja refresh automatico. Si falla:</p>
+        <pre><code class="language-bash">npx @_davideast/stitch-mcp logout --force
+npx @_davideast/stitch-mcp init</code></pre>
+
+        <h3>.env interfiere</h3>
+        <p>
+          Un archivo <code>.env</code> en el directorio del proyecto puede romper el proxy.
+          Si ves errores de <em>"invalid character"</em>, mover o renombrar el <code>.env</code>.
+        </p>
+      </section>
+
+      <!-- CLI -->
+      <section id="cli" class="mt-16">
+        <h2>CLI adicional (exploracion sin agente)</h2>
+        <pre><code class="language-bash"># Ver todos los proyectos
+npx @_davideast/stitch-mcp view --projects
+
+# Preview local de un proyecto
+npx @_davideast/stitch-mcp serve -p &lt;project-id&gt;
+
+# Browser interactivo en terminal
+npx @_davideast/stitch-mcp view
+# c = copiar, s = preview HTML, o = abrir en Stitch, q = salir
+
+# Generar sitio Astro
+npx @_davideast/stitch-mcp site -p &lt;project-id&gt;</code></pre>
+      </section>
+
+      <!-- Recursos -->
+      <section id="recursos" class="mt-16">
+        <h2>Recursos y enlaces</h2>
+        <div class="not-prose grid gap-3 sm:grid-cols-2">
+          {[
+            {
+              title: 'Google Stitch',
+              desc: 'Herramienta de generacion de UI de Google Labs',
+              url: 'https://stitch.withgoogle.com/',
+            },
+            {
+              title: 'stitch-mcp (npm)',
+              desc: 'Paquete MCP para integrar Stitch con agentes',
+              url: 'https://www.npmjs.com/package/@_davideast/stitch-mcp',
+            },
+            {
+              title: 'Model Context Protocol',
+              desc: 'Especificacion abierta para conectar AI con herramientas',
+              url: 'https://modelcontextprotocol.io/',
+            },
+            {
+              title: 'Claude Code Docs',
+              desc: 'Documentacion oficial de Claude Code',
+              url: 'https://docs.anthropic.com/en/docs/claude-code',
+            },
+            {
+              title: 'Google Cloud Console',
+              desc: 'Administrar proyectos, billing y APIs',
+              url: 'https://console.cloud.google.com/',
+            },
+            {
+              title: 'Stitch API',
+              desc: 'API reference para la Stitch API',
+              url: 'https://stitch.googleapis.com/',
+            },
+          ].map(({ title, desc, url }) => (
+            <a href={url} target="_blank" rel="noopener" class="group rounded-lg border border-surface-border bg-surface-alt p-4 transition-colors hover:border-accent-dim">
+              <span class="font-medium text-white group-hover:text-accent transition-colors">{title}</span>
+              <span class="mx-2 text-text-muted">&rarr;</span>
+              <p class="mt-1 text-sm text-text-muted">{desc}</p>
+            </a>
+          ))}
+        </div>
+      </section>
+
+    </article>
+  </main>
+
+  <!-- Footer -->
+  <footer class="mt-20 border-t border-surface-border">
+    <div class="mx-auto max-w-4xl px-6 py-8 text-center text-sm text-text-muted">
+      <p>
+        Guia creada por
+        <a href="https://github.com/gonzalezulises" target="_blank" rel="noopener" class="text-accent hover:text-white transition-colors">Ulises Gonzalez</a>
+        &mdash; Powered by Claude Code + Stitch MCP
+      </p>
+    </div>
+  </footer>
+</Layout>

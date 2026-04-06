@@ -1,0 +1,94 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-stitch-blue: #4285f4;
+  --color-stitch-green: #34a853;
+  --color-stitch-yellow: #fbbc04;
+  --color-stitch-red: #ea4335;
+  --color-surface: #0a0a0a;
+  --color-surface-alt: #141414;
+  --color-surface-raised: #1a1a1a;
+  --color-surface-border: #2a2a2a;
+  --color-text-primary: #e5e5e5;
+  --color-text-secondary: #a3a3a3;
+  --color-text-muted: #737373;
+  --color-accent: #8ab4f8;
+  --color-accent-dim: #4285f4;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-surface);
+  color: var(--color-text-primary);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* Custom prose overrides for dark theme */
+.prose {
+  --tw-prose-body: var(--color-text-primary);
+  --tw-prose-headings: #ffffff;
+  --tw-prose-links: var(--color-accent);
+  --tw-prose-bold: #ffffff;
+  --tw-prose-counters: var(--color-text-secondary);
+  --tw-prose-bullets: var(--color-text-muted);
+  --tw-prose-hr: var(--color-surface-border);
+  --tw-prose-quotes: var(--color-text-secondary);
+  --tw-prose-quote-borders: var(--color-accent-dim);
+  --tw-prose-captions: var(--color-text-muted);
+  --tw-prose-code: var(--color-accent);
+  --tw-prose-pre-code: var(--color-text-primary);
+  --tw-prose-pre-bg: var(--color-surface-alt);
+  --tw-prose-th-borders: var(--color-surface-border);
+  --tw-prose-td-borders: var(--color-surface-border);
+}
+
+.prose :where(code):not(:where(pre *)) {
+  background-color: var(--color-surface-raised);
+  padding: 0.15em 0.4em;
+  border-radius: 0.25rem;
+  font-size: 0.875em;
+  font-weight: 500;
+}
+
+.prose :where(code):not(:where(pre *))::before,
+.prose :where(code):not(:where(pre *))::after {
+  content: none;
+}
+
+.prose :where(pre) {
+  border: 1px solid var(--color-surface-border);
+  border-radius: 0.75rem;
+}
+
+.prose :where(table) {
+  font-size: 0.9em;
+}
+
+.prose :where(th) {
+  text-align: left;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.prose :where(a) {
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.prose :where(a):hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+/* Smooth gradient backgrounds */
+.gradient-mesh {
+  background:
+    radial-gradient(ellipse at 20% 0%, rgba(66, 133, 244, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 100%, rgba(52, 168, 83, 0.06) 0%, transparent 50%);
+}
