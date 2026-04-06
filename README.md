@@ -1,14 +1,24 @@
-# Google Stitch MCP — Setup para Claude Code
+# Ruta Profesional: AI Software Engineer
 
-Guia completa para integrar [Google Stitch](https://stitch.withgoogle.com/) con [Claude Code](https://docs.anthropic.com/en/docs/claude-code) via MCP (Model Context Protocol).
+Formacion alternativa de alta calidad para convertirte en AI Software Engineer. 12-18 meses, costo cero, todos los recursos gratuitos verificados.
 
-Google Stitch genera UI designs de alta fidelidad desde prompts de texto, powered by Gemini. Esta guia cubre la configuracion paso a paso para usar Stitch directamente desde Claude Code.
+## Fases
+
+| Fase | Tema | Duracion |
+|------|------|----------|
+| 0 | Ingenieria de Software | 8–10 semanas |
+| 1 | Fundamentos Matematicos | 6–8 semanas |
+| 2 | ML Clasico | 6–8 semanas |
+| 3 | Deep Learning | 8–10 semanas |
+| 4 | Ingenieria de LLMs | 8–10 semanas |
+| 5 | AI en Produccion | 6–8 semanas |
+| 6 | Seguridad y Gobernanza | 4–6 semanas |
+| T | Lectura de Papers | Transversal |
 
 ## Tech Stack
 
 - [Astro](https://astro.build/) v6 — Static site generator
 - [Tailwind CSS](https://tailwindcss.com/) v4 — Utility-first CSS
-- [Shiki](https://shiki.style/) — Syntax highlighting
 
 ## Desarrollo local
 
@@ -16,24 +26,6 @@ Google Stitch genera UI designs de alta fidelidad desde prompts de texto, powere
 npm install
 npm run dev
 ```
-
-## Build
-
-```bash
-npm run build
-npm run preview
-```
-
-## Deploy
-
-El sitio es estatico y se puede desplegar en cualquier proveedor. Optimizado para [Vercel](https://vercel.com/).
-
-## Recursos
-
-- [Google Stitch](https://stitch.withgoogle.com/)
-- [@_davideast/stitch-mcp](https://www.npmjs.com/package/@_davideast/stitch-mcp)
-- [Model Context Protocol](https://modelcontextprotocol.io/)
-- [Claude Code Docs](https://docs.anthropic.com/en/docs/claude-code)
 
 ## Autor
 
