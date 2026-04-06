@@ -4,468 +4,434 @@ import '../styles/global.css';
 
 const phases = [
   {
-    id: 'fase-0',
-    num: '0',
-    title: 'Ingenieria de Software',
-    duration: '8–10 semanas',
+    id: 'fase-0', num: '0', icon: 'terminal', color: 'primary',
+    title: 'Ingenieria de Software', duration: '8–10 semanas',
     quote: 'Sin esta base, todo lo que sigue es scripting glorificado. La mayoria de "AI engineers" fracasan aqui, no en el modelo.',
     objective: 'Dominar Python a nivel profesional, diseno de sistemas, testing, CI/CD y SQL como ciudadano de primera clase.',
     resources: [
       { name: 'CS50 (Harvard)', desc: 'Intro a CS con rigor', format: 'Video + Labs', url: 'https://cs50.harvard.edu/x/' },
       { name: 'Missing Semester (MIT)', desc: 'Shell, Git, debugging, profiling', format: 'Video + Exercises', url: 'https://missing.csail.mit.edu/' },
-      { name: 'Python for Everybody (UMich / Dr. Chuck)', desc: '', format: 'Video + Libro', url: 'https://www.py4e.com/' },
+      { name: 'Python for Everybody', desc: 'UMich / Dr. Chuck', format: 'Video + Libro', url: 'https://www.py4e.com/' },
       { name: 'Real Python', desc: 'Concurrencia, profiling, testing', format: 'Tutoriales', url: 'https://realpython.com/' },
-      { name: 'SQLBolt', desc: 'SQL interactivo desde cero a avanzado', format: 'Ejercicios web', url: 'https://sqlbolt.com/' },
+      { name: 'SQLBolt', desc: 'SQL interactivo desde cero', format: 'Ejercicios web', url: 'https://sqlbolt.com/' },
       { name: 'Select Star SQL', desc: 'SQL analitico con dataset real', format: 'Libro interactivo', url: 'https://selectstarsql.com/' },
-      { name: 'System Design Primer (GitHub)', desc: 'Trade-offs, escalabilidad', format: 'Repositorio', url: 'https://github.com/donnemartin/system-design-primer' },
-      { name: 'Designing Data-Intensive Applications (Kleppmann)', desc: 'Resumenes', format: 'Notas comunitarias', url: 'https://github.com/keyvanakbary/learning-notes/blob/master/books/designing-data-intensive-applications.md' },
+      { name: 'System Design Primer', desc: 'Trade-offs, escalabilidad', format: 'GitHub', url: 'https://github.com/donnemartin/system-design-primer' },
+      { name: 'DDIA (Kleppmann)', desc: 'Resumenes comunitarios', format: 'Notas', url: 'https://github.com/keyvanakbary/learning-notes/blob/master/books/designing-data-intensive-applications.md' },
     ],
-    deliverable: 'Un proyecto Python con tests (pytest), CI/CD (GitHub Actions), SQL, y documentacion.',
+    extra: { type: 'deliverable', text: 'Un proyecto Python con tests (pytest), CI/CD (GitHub Actions), SQL, y documentacion.' },
   },
   {
-    id: 'fase-1',
-    num: '1',
-    title: 'Fundamentos Matematicos con Proposito',
-    duration: '6–8 semanas',
+    id: 'fase-1', num: '1', icon: 'function', color: 'secondary',
+    title: 'Fundamentos Matematicos', duration: '6–8 semanas',
     quote: 'No para resolver ejercicios, sino para entender que hace un optimizer y por que ciertos modelos colapsan.',
     objective: 'Algebra lineal, calculo, probabilidad y estadistica bayesiana orientados a ML. Teoria de la informacion basica.',
     resources: [
-      { name: '3Blue1Brown — Essence of Linear Algebra', desc: '', format: 'Video (16 eps)', url: 'https://www.3blue1brown.com/topics/linear-algebra' },
-      { name: '3Blue1Brown — Essence of Calculus', desc: '', format: 'Video (12 eps)', url: 'https://www.3blue1brown.com/topics/calculus' },
-      { name: '3Blue1Brown — Neural Networks', desc: 'Backprop visual', format: 'Video (6+ eps)', url: 'https://www.3blue1brown.com/topics/neural-networks' },
-      { name: 'Khan Academy — Estadistica y Probabilidad', desc: '', format: 'Video + Ejercicios', url: 'https://www.khanacademy.org/math/statistics-probability' },
-      { name: 'StatQuest (Josh Starmer)', desc: 'Bayesian, distribuciones, tests', format: 'YouTube', url: 'https://www.youtube.com/@statquest' },
-      { name: 'Mathematics for Machine Learning (Deisenroth et al.)', desc: '', format: 'Libro PDF gratis', url: 'https://mml-book.github.io/' },
-      { name: 'Information Theory (Chris Olah)', desc: '', format: 'Blog post', url: 'https://colah.github.io/posts/2015-09-Visual-Information/' },
+      { name: '3Blue1Brown — Linear Algebra', desc: 'Essence of Linear Algebra', format: 'Video (16 eps)', url: 'https://www.3blue1brown.com/topics/linear-algebra' },
+      { name: '3Blue1Brown — Calculus', desc: 'Essence of Calculus', format: 'Video (12 eps)', url: 'https://www.3blue1brown.com/topics/calculus' },
+      { name: '3Blue1Brown — Neural Nets', desc: 'Backprop visual', format: 'Video (6+ eps)', url: 'https://www.3blue1brown.com/topics/neural-networks' },
+      { name: 'Khan Academy', desc: 'Estadistica y Probabilidad', format: 'Video + Ejercicios', url: 'https://www.khanacademy.org/math/statistics-probability' },
+      { name: 'StatQuest', desc: 'Bayesian, distribuciones, tests', format: 'YouTube', url: 'https://www.youtube.com/@statquest' },
+      { name: 'MML Book', desc: 'Mathematics for Machine Learning', format: 'Libro PDF gratis', url: 'https://mml-book.github.io/' },
+      { name: 'Chris Olah — Info Theory', desc: 'Visual Information Theory', format: 'Blog post', url: 'https://colah.github.io/posts/2015-09-Visual-Information/' },
     ],
-    keyConcept: 'Entropia, KL divergence, cross-entropy loss — si no entiendes por que tu loss function es esa, estas operando a ciegas.',
+    extra: { type: 'concept', text: 'Entropia, KL divergence, cross-entropy loss — si no entiendes por que tu loss function es esa, estas operando a ciegas.' },
   },
   {
-    id: 'fase-2',
-    num: '2',
-    title: 'ML Clasico como Base de Criterio',
-    duration: '6–8 semanas',
+    id: 'fase-2', num: '2', icon: 'analytics', color: 'tertiary',
+    title: 'ML Clasico', duration: '6–8 semanas',
     quote: 'El objetivo no es "saber sklearn". Es desarrollar la intuicion de cuando NO usar deep learning.',
     objective: 'Bias-variance, regularizacion, feature engineering, seleccion de modelos. Metricas en contexto de negocio.',
     resources: [
-      { name: 'Stanford CS229 (Andrew Ng)', desc: 'ML teorico riguroso', format: 'Video (YouTube)', url: 'https://www.youtube.com/playlist?list=PLoROMvodv4rMiGQp3WXShtMGgzqpfVfbU' },
-      { name: 'CS229 Notas de curso', desc: '', format: 'PDF', url: 'https://cs229.stanford.edu/' },
-      { name: 'Machine Learning Zoomcamp (DataTalks.Club)', desc: 'End-to-end con deployment', format: 'Video + Repo', url: 'https://github.com/DataTalksClub/machine-learning-zoomcamp' },
-      { name: 'StatQuest — Machine Learning', desc: '', format: 'YouTube playlist', url: 'https://www.youtube.com/playlist?list=PLblh5JKOoLUICTaGLRoHQDuF_7q2GfuJF' },
-      { name: 'Scikit-learn User Guide', desc: 'La mejor doc de ML aplicado', format: 'Documentacion', url: 'https://scikit-learn.org/stable/user_guide.html' },
+      { name: 'Stanford CS229', desc: 'ML teorico riguroso (Andrew Ng)', format: 'Video', url: 'https://www.youtube.com/playlist?list=PLoROMvodv4rMiGQp3WXShtMGgzqpfVfbU' },
+      { name: 'CS229 Notas', desc: 'Notas de curso oficiales', format: 'PDF', url: 'https://cs229.stanford.edu/' },
+      { name: 'ML Zoomcamp', desc: 'End-to-end con deployment', format: 'Video + Repo', url: 'https://github.com/DataTalksClub/machine-learning-zoomcamp' },
+      { name: 'StatQuest — ML', desc: 'Playlist completa de ML', format: 'YouTube', url: 'https://www.youtube.com/playlist?list=PLblh5JKOoLUICTaGLRoHQDuF_7q2GfuJF' },
+      { name: 'Scikit-learn Guide', desc: 'La mejor doc de ML aplicado', format: 'Docs', url: 'https://scikit-learn.org/stable/user_guide.html' },
       { name: 'Kaggle Learn', desc: 'ML practico con notebooks', format: 'Notebooks', url: 'https://www.kaggle.com/learn' },
     ],
-    questions: [
-      'Cuando random forest supera a un modelo lineal y por que?',
-      'Que significa un recall de 0.95 en un detector de fraude vs. un recomendador de peliculas?',
-      'Como detectas data leakage en cross-validation?',
-    ],
+    extra: { type: 'questions', items: ['Cuando random forest supera a un modelo lineal y por que?', 'Que significa recall 0.95 en fraude vs. recomendador?', 'Como detectas data leakage en cross-validation?'] },
   },
   {
-    id: 'fase-3',
-    num: '3',
-    title: 'Deep Learning y Arquitecturas Modernas',
-    duration: '8–10 semanas',
+    id: 'fase-3', num: '3', icon: 'neurology', color: 'primary',
+    title: 'Deep Learning', duration: '8–10 semanas',
     quote: 'Transformers desde la mecanica, no desde la API.',
-    objective: 'Entender attention, positional encoding, scaling laws. Training dynamics. PyTorch como herramienta, no como identidad.',
+    objective: 'Attention, positional encoding, scaling laws. Training dynamics. PyTorch como herramienta, no como identidad.',
     resources: [
-      { name: 'Andrej Karpathy — Neural Networks: Zero to Hero', desc: '', format: 'YouTube (7+ hrs)', url: 'https://karpathy.ai/zero-to-hero.html' },
-      { name: 'Karpathy — Deep Dive into LLMs', desc: '', format: 'YouTube', url: 'https://www.youtube.com/@AndrejKarpathy' },
-      { name: 'MIT 6.S191 — Intro to Deep Learning (2026)', desc: '', format: 'Video + Labs + Colab', url: 'https://introtodeeplearning.com/' },
-      { name: 'Stanford CS224N — NLP with Deep Learning (2024)', desc: '', format: 'Video playlist', url: 'https://web.stanford.edu/class/cs224n/' },
-      { name: 'The Illustrated Transformer (Jay Alammar)', desc: '', format: 'Blog post', url: 'https://jalammar.github.io/illustrated-transformer/' },
-      { name: 'Attention Is All You Need (paper original)', desc: '', format: 'Paper', url: 'https://arxiv.org/abs/1706.03762' },
-      { name: 'PyTorch Tutorials oficiales', desc: '', format: 'Documentacion', url: 'https://pytorch.org/tutorials/' },
-      { name: 'd2l.ai — Dive into Deep Learning', desc: '', format: 'Libro interactivo', url: 'https://d2l.ai/' },
+      { name: 'Karpathy — Zero to Hero', desc: 'Neural Networks from scratch', format: 'YouTube (7+ hrs)', url: 'https://karpathy.ai/zero-to-hero.html' },
+      { name: 'Karpathy — LLM Deep Dive', desc: 'Deep Dive into LLMs', format: 'YouTube', url: 'https://www.youtube.com/@AndrejKarpathy' },
+      { name: 'MIT 6.S191', desc: 'Intro to Deep Learning (2026)', format: 'Video + Labs', url: 'https://introtodeeplearning.com/' },
+      { name: 'Stanford CS224N', desc: 'NLP with Deep Learning', format: 'Video', url: 'https://web.stanford.edu/class/cs224n/' },
+      { name: 'Illustrated Transformer', desc: 'Jay Alammar — visual guide', format: 'Blog', url: 'https://jalammar.github.io/illustrated-transformer/' },
+      { name: 'Attention Is All You Need', desc: 'Paper original', format: 'Paper', url: 'https://arxiv.org/abs/1706.03762' },
+      { name: 'PyTorch Tutorials', desc: 'Documentacion oficial', format: 'Docs', url: 'https://pytorch.org/tutorials/' },
+      { name: 'd2l.ai', desc: 'Dive into Deep Learning', format: 'Libro interactivo', url: 'https://d2l.ai/' },
     ],
-    extraReading: [
+    extra: { type: 'reading', items: [
       { name: 'A Recipe for Training Neural Networks (Karpathy)', url: 'https://karpathy.github.io/2019/04/25/recipe/' },
-      { name: 'Scaling Laws paper (Kaplan et al.)', url: 'https://arxiv.org/abs/2001.08361' },
-    ],
+      { name: 'Scaling Laws (Kaplan et al.)', url: 'https://arxiv.org/abs/2001.08361' },
+    ]},
   },
   {
-    id: 'fase-4',
-    num: '4',
-    title: 'Ingenieria de LLMs',
-    duration: '8–10 semanas',
-    quote: 'El core diferenciador. Tres ramas: prompting, RAG, fine-tuning. La decision de cual aplicar es mas importante que saber ejecutar las tres.',
+    id: 'fase-4', num: '4', icon: 'smart_toy', color: 'secondary',
+    title: 'Ingenieria de LLMs', duration: '8–10 semanas',
+    quote: 'Tres ramas: prompting, RAG, fine-tuning. La decision de cual aplicar es mas importante que saber ejecutar las tres.',
     objective: 'Dominar prompting como ingenieria, RAG como arquitectura de sistemas, fine-tuning como ultimo recurso informado.',
     resources: [
-      { name: 'Hugging Face LLM Course', desc: 'Antes NLP Course, actualizado 2025', format: 'Curso interactivo', url: 'https://huggingface.co/learn/llm-course/' },
-      { name: 'LLM Zoomcamp (DataTalks.Club)', desc: 'RAG, fine-tuning, produccion', format: 'Video + Repo gratis', url: 'https://github.com/DataTalksClub/llm-zoomcamp' },
-      { name: 'Anthropic Prompt Engineering Guide', desc: '', format: 'Documentacion', url: 'https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/' },
+      { name: 'HF LLM Course', desc: 'Hugging Face, actualizado 2025', format: 'Curso interactivo', url: 'https://huggingface.co/learn/llm-course/' },
+      { name: 'LLM Zoomcamp', desc: 'RAG, fine-tuning, produccion', format: 'Video + Repo', url: 'https://github.com/DataTalksClub/llm-zoomcamp' },
+      { name: 'Anthropic Prompt Guide', desc: 'Prompt engineering oficial', format: 'Docs', url: 'https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/' },
       { name: 'OpenAI Cookbook', desc: 'Patterns de produccion', format: 'GitHub', url: 'https://github.com/openai/openai-cookbook' },
-      { name: 'A Survey of Techniques for Maximizing LLM Performance (OpenAI)', desc: '', format: 'Video', url: 'https://www.youtube.com/watch?v=ahnGLM-RC1Y' },
-      { name: 'Chunking Strategies for RAG (Pinecone)', desc: '', format: 'Blog tecnico', url: 'https://www.pinecone.io/learn/chunking-strategies/' },
-      { name: 'LoRA: Low-Rank Adaptation (paper)', desc: '', format: 'Paper', url: 'https://arxiv.org/abs/2106.09685' },
-      { name: 'PEFT Documentation (Hugging Face)', desc: '', format: 'Docs', url: 'https://huggingface.co/docs/peft/' },
-      { name: 'LLM-Twin Free Course (Iusztin et al.)', desc: 'RAG en produccion', format: 'GitHub + Medium', url: 'https://github.com/decodingml/llm-twin-course' },
+      { name: 'Maximizing LLM Perf', desc: 'Survey de tecnicas (OpenAI)', format: 'Video', url: 'https://www.youtube.com/watch?v=ahnGLM-RC1Y' },
+      { name: 'RAG Chunking (Pinecone)', desc: 'Chunking strategies', format: 'Blog', url: 'https://www.pinecone.io/learn/chunking-strategies/' },
+      { name: 'LoRA Paper', desc: 'Low-Rank Adaptation', format: 'Paper', url: 'https://arxiv.org/abs/2106.09685' },
+      { name: 'PEFT Docs', desc: 'Hugging Face PEFT', format: 'Docs', url: 'https://huggingface.co/docs/peft/' },
+      { name: 'LLM-Twin Course', desc: 'RAG en produccion', format: 'GitHub', url: 'https://github.com/decodingml/llm-twin-course' },
     ],
-    decisionTree: true,
+    extra: { type: 'decision' },
   },
   {
-    id: 'fase-5',
-    num: '5',
-    title: 'Sistemas de AI en Produccion',
-    duration: '6–8 semanas',
+    id: 'fase-5', num: '5', icon: 'deployed_code', color: 'tertiary',
+    title: 'AI en Produccion', duration: '6–8 semanas',
     quote: 'Aqui muere el 90% de los "AI engineers" del mercado.',
     objective: 'Serving, optimizacion de inferencia, observabilidad, costos como restriccion de diseno, orquestacion de agentes.',
     resources: [
-      { name: 'MLOps Zoomcamp (DataTalks.Club)', desc: 'MLflow, Docker, monitoring', format: 'Video + Repo gratis', url: 'https://github.com/DataTalksClub/mlops-zoomcamp' },
-      { name: 'Made With ML (Goku Mohandas)', desc: 'MLOps end-to-end', format: 'Curso web gratis', url: 'https://madewithml.com/' },
-      { name: 'Full Stack Deep Learning (2022)', desc: 'Produccion de ML', format: 'Video', url: 'https://fullstackdeeplearning.com/course/2022/' },
-      { name: 'ML Engineering for Production (Andrew Ng / Coursera)', desc: 'Audit gratis', format: 'Video (audit free)', url: 'https://www.coursera.org/specializations/machine-learning-engineering-for-production-mlops' },
-      { name: 'Evidently AI — ML Monitoring Course', desc: '', format: 'Video + GitHub', url: 'https://www.evidentlyai.com/ml-observability-course' },
-      { name: 'vLLM Documentation', desc: 'Serving de alta performance', format: 'Docs', url: 'https://docs.vllm.ai/' },
+      { name: 'MLOps Zoomcamp', desc: 'MLflow, Docker, monitoring', format: 'Video + Repo', url: 'https://github.com/DataTalksClub/mlops-zoomcamp' },
+      { name: 'Made With ML', desc: 'MLOps end-to-end', format: 'Curso web', url: 'https://madewithml.com/' },
+      { name: 'Full Stack DL', desc: 'Produccion de ML (2022)', format: 'Video', url: 'https://fullstackdeeplearning.com/course/2022/' },
+      { name: 'ML Engineering (Ng)', desc: 'Coursera audit gratis', format: 'Video', url: 'https://www.coursera.org/specializations/machine-learning-engineering-for-production-mlops' },
+      { name: 'Evidently AI', desc: 'ML Monitoring Course', format: 'Video + GitHub', url: 'https://www.evidentlyai.com/ml-observability-course' },
+      { name: 'vLLM', desc: 'Serving de alta performance', format: 'Docs', url: 'https://docs.vllm.ai/' },
       { name: 'llama.cpp', desc: 'Inferencia local optimizada', format: 'GitHub', url: 'https://github.com/ggml-org/llama.cpp' },
-      { name: 'BentoML Documentation', desc: 'Model serving framework', format: 'Docs', url: 'https://docs.bentoml.com/' },
+      { name: 'BentoML', desc: 'Model serving framework', format: 'Docs', url: 'https://docs.bentoml.com/' },
     ],
-    metrics: [
-      'Costo por query (tokens x precio + compute)',
-      'Latencia p50/p95/p99',
-      'Throughput (queries/segundo)',
-      'Cache hit rate y su impacto en costos',
-    ],
+    extra: { type: 'metrics', items: ['Costo por query (tokens x precio + compute)', 'Latencia p50/p95/p99', 'Throughput (queries/segundo)', 'Cache hit rate y su impacto en costos'] },
   },
   {
-    id: 'fase-6',
-    num: '6',
-    title: 'Seguridad, Gobernanza y Evaluacion',
-    duration: '4–6 semanas',
+    id: 'fase-6', num: '6', icon: 'shield', color: 'primary',
+    title: 'Seguridad y Gobernanza', duration: '4–6 semanas',
     quote: 'Lo que nadie ensena y todos necesitan.',
-    objective: 'Prompt injection, evaluacion sistematica, red teaming, gobernanza de datos, etica practica (decisiones concretas, no filosofia).',
+    objective: 'Prompt injection, evaluacion sistematica, red teaming, gobernanza de datos, etica practica.',
     resources: [
-      { name: 'OWASP Top 10 for LLM Applications (2025)', desc: '', format: 'Guia + PDF', url: 'https://owasp.org/www-project-top-10-for-large-language-model-applications/' },
-      { name: 'OWASP GenAI Security Project', desc: 'Detalle por vulnerabilidad', format: 'Web', url: 'https://genai.owasp.org/' },
-      { name: 'Promptfoo', desc: 'Red teaming open-source para LLMs', format: 'GitHub + Docs', url: 'https://www.promptfoo.dev/' },
-      { name: 'Simon Willison\'s Blog', desc: 'Prompt injection research', format: 'Blog', url: 'https://simonwillison.net/series/prompt-injection/' },
-      { name: 'NIST AI Risk Management Framework', desc: '', format: 'PDF gratis', url: 'https://www.nist.gov/artificial-intelligence/executive-order-safe-secure-and-trustworthy-artificial-intelligence' },
-      { name: 'Anthropic Research', desc: 'Constitutional AI, RLHF papers', format: 'Papers', url: 'https://www.anthropic.com/research' },
-      { name: 'EU AI Act — Resumen ejecutivo', desc: '', format: 'Documentacion', url: 'https://artificialintelligenceact.eu/' },
+      { name: 'OWASP Top 10 LLM', desc: 'Guia 2025', format: 'Guia + PDF', url: 'https://owasp.org/www-project-top-10-for-large-language-model-applications/' },
+      { name: 'OWASP GenAI', desc: 'Detalle por vulnerabilidad', format: 'Web', url: 'https://genai.owasp.org/' },
+      { name: 'Promptfoo', desc: 'Red teaming open-source', format: 'GitHub + Docs', url: 'https://www.promptfoo.dev/' },
+      { name: 'Simon Willison', desc: 'Prompt injection research', format: 'Blog', url: 'https://simonwillison.net/series/prompt-injection/' },
+      { name: 'NIST AI RMF', desc: 'Risk Management Framework', format: 'PDF', url: 'https://www.nist.gov/artificial-intelligence/executive-order-safe-secure-and-trustworthy-artificial-intelligence' },
+      { name: 'Anthropic Research', desc: 'Constitutional AI, RLHF', format: 'Papers', url: 'https://www.anthropic.com/research' },
+      { name: 'EU AI Act', desc: 'Resumen ejecutivo', format: 'Docs', url: 'https://artificialintelligenceact.eu/' },
     ],
-    skills: [
-      'Ejecutar un red team basico contra tu propia aplicacion LLM',
-      'Implementar guardrails de entrada/salida',
-      'Disenar un evaluation framework con metricas humanas + automaticas',
-      'Identificar PII en pipelines de datos',
-    ],
+    extra: { type: 'skills', items: ['Ejecutar red team basico contra tu app LLM', 'Implementar guardrails de entrada/salida', 'Disenar evaluation framework con metricas humanas + automaticas', 'Identificar PII en pipelines de datos'] },
   },
 ];
 
-const papersResources = [
-  { name: 'ArXiv Sanity Lite (Karpathy)', format: 'Web', url: 'https://arxiv-sanity-lite.com/' },
-  { name: 'Papers With Code', desc: 'Papers + implementaciones + benchmarks', format: 'Web', url: 'https://paperswithcode.com/' },
-  { name: 'Yannic Kilcher', desc: 'Paper reviews con analisis critico', format: 'YouTube', url: 'https://www.youtube.com/@YannicKilcher' },
-  { name: 'Two Minute Papers', desc: 'Overview rapido de papers nuevos', format: 'YouTube', url: 'https://www.youtube.com/@TwoMinutePapers' },
-  { name: 'How to Read a Paper (Keshav)', desc: '', format: 'PDF (3 paginas)', url: 'https://svr-sk818-web.cl.cam.ac.uk/keshav/papers/07/paper-reading.pdf' },
+const navItems = [
+  { icon: 'dashboard', label: 'Overview', id: 'hero' },
+  { icon: 'terminal', label: 'Fase 0 — SWE', id: 'fase-0' },
+  { icon: 'function', label: 'Fase 1 — Math', id: 'fase-1' },
+  { icon: 'analytics', label: 'Fase 2 — ML', id: 'fase-2' },
+  { icon: 'neurology', label: 'Fase 3 — DL', id: 'fase-3' },
+  { icon: 'smart_toy', label: 'Fase 4 — LLMs', id: 'fase-4' },
+  { icon: 'deployed_code', label: 'Fase 5 — Prod', id: 'fase-5' },
+  { icon: 'shield', label: 'Fase 6 — Sec', id: 'fase-6' },
+  { icon: 'menu_book', label: 'Papers', id: 'papers' },
+  { icon: 'groups', label: 'Comunidad', id: 'comunidades' },
 ];
 
-const communityResources = [
+const communities = [
   { name: 'Hugging Face Discord', type: 'Comunidad', url: 'https://huggingface.co/join/discord' },
-  { name: 'MLOps Community Slack', type: 'Comunidad', url: 'https://mlops.community/' },
-  { name: 'DataTalks.Club Slack', type: 'Comunidad', url: 'https://datatalks.club/' },
+  { name: 'MLOps Community', type: 'Slack', url: 'https://mlops.community/' },
+  { name: 'DataTalks.Club', type: 'Slack', url: 'https://datatalks.club/' },
   { name: 'r/MachineLearning', type: 'Reddit', url: 'https://reddit.com/r/MachineLearning' },
-  { name: 'r/LocalLLaMA', type: 'Reddit (inferencia local)', url: 'https://reddit.com/r/LocalLLaMA' },
-  { name: 'The Batch (Andrew Ng)', type: 'Newsletter semanal', url: 'https://www.deeplearning.ai/the-batch/' },
-  { name: 'Sebastian Raschka\'s Newsletter', type: 'Newsletter tecnica', url: 'https://magazine.sebastianraschka.com/' },
-];
-
-const excluded = [
-  { item: 'C++ generico', reason: 'Solo relevante si vas a escribir kernels CUDA. Si llegas ahi, ya sabras que lo necesitas.' },
-  { item: 'LangChain como skill central', reason: 'Es una abstraccion que cambia cada mes. Entiende los patterns subyacentes y cualquier framework sera trivial.' },
-  { item: 'Certificaciones de cloud especificas', reason: 'AWS/GCP/Azure cambian pricing y servicios constantemente. Aprende los conceptos y el vendor sera intercambiable.' },
-  { item: '"Prompt engineering" como disciplina aislada', reason: 'Esta integrado en Fase 4 como parte de la decision de ingenieria, no como habilidad decorativa.' },
+  { name: 'r/LocalLLaMA', type: 'Reddit', url: 'https://reddit.com/r/LocalLLaMA' },
+  { name: 'The Batch (Andrew Ng)', type: 'Newsletter', url: 'https://www.deeplearning.ai/the-batch/' },
+  { name: 'Sebastian Raschka', type: 'Newsletter', url: 'https://magazine.sebastianraschka.com/' },
 ];
 ---
 
 <Layout
-  title="Ruta Profesional: AI Software Engineer"
-  description="Formacion alternativa de alta calidad para convertirte en AI Software Engineer. 12-18 meses, costo cero, todos los recursos gratuitos verificados."
+  title="Ruta AI Software Engineer — Formacion Gratuita"
+  description="Ruta profesional de 12-18 meses para convertirte en AI Software Engineer. Todos los recursos son gratuitos y verificados."
 >
-  <!-- Header -->
-  <header class="border-b border-surface-border sticky top-0 z-50 backdrop-blur-xl bg-surface/80">
-    <div class="mx-auto max-w-4xl px-6 py-4 flex items-center justify-between">
-      <div class="flex items-center gap-3">
-        <div class="h-8 w-8 rounded-lg bg-gradient-to-br from-accent-dim to-accent flex items-center justify-center text-xs font-bold text-white">AI</div>
-        <span class="text-sm font-semibold text-text-secondary">Ruta AI Engineer</span>
-      </div>
-      <div class="flex items-center gap-4">
-        <span class="text-xs text-text-muted hidden sm:inline">12–18 meses &middot; ~15h/semana &middot; Costo cero</span>
-        <a
-          href="https://github.com/gonzalezulises/ruta-ai-engineer"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="text-sm text-text-muted hover:text-text-primary transition-colors"
-        >
-          GitHub
-        </a>
-      </div>
+  <!-- Top Nav -->
+  <header class="fixed top-0 w-full z-50 flex justify-between items-center px-6 h-16 bg-slate-50/70 backdrop-blur-xl shadow-sm shadow-cyan-900/5">
+    <div class="flex items-center gap-8">
+      <span class="text-xl font-bold tracking-tight text-cyan-900 font-headline">Ruta AI Engineer</span>
+      <nav class="hidden lg:flex gap-1">
+        <a class="text-cyan-700 font-semibold px-3 py-1 rounded-lg text-sm" href="#hero">Overview</a>
+        <a class="text-slate-500 hover:bg-cyan-50 transition-colors px-3 py-1 rounded-lg text-sm" href="#fase-0">Fases</a>
+        <a class="text-slate-500 hover:bg-cyan-50 transition-colors px-3 py-1 rounded-lg text-sm" href="#papers">Papers</a>
+        <a class="text-slate-500 hover:bg-cyan-50 transition-colors px-3 py-1 rounded-lg text-sm" href="#comunidades">Comunidad</a>
+      </nav>
+    </div>
+    <div class="flex items-center gap-3">
+      <span class="text-xs text-on-surface-variant hidden sm:inline">12–18 meses &middot; ~15h/semana &middot; Costo cero</span>
+      <a href="https://github.com/gonzalezulises/ruta-ai-engineer" target="_blank" rel="noopener" class="p-2 text-slate-500 hover:bg-cyan-50 rounded-full transition-colors">
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+      </a>
     </div>
   </header>
 
-  <main class="mx-auto max-w-4xl px-6 py-16">
-    <!-- Hero -->
-    <section class="mb-20">
-      <div class="mb-4 inline-flex items-center gap-2 rounded-full border border-surface-border bg-surface-raised px-3 py-1 text-xs text-text-secondary">
-        <span class="inline-block h-2 w-2 rounded-full bg-stitch-green animate-pulse"></span>
-        Formacion alternativa de alta calidad
-      </div>
-      <h1 class="text-4xl font-bold tracking-tight text-white sm:text-5xl">
-        Ruta Profesional:<br/>
-        <span class="text-accent">AI Software Engineer</span>
-      </h1>
-      <p class="mt-6 max-w-2xl text-lg leading-relaxed text-text-secondary">
-        Costo cero. 12–18 meses con dedicacion de ~15 horas/semana.
-        Todos los recursos listados son de acceso gratuito verificado.
-      </p>
-      <div class="mt-4 flex flex-wrap gap-3 text-sm">
-        <span class="rounded-full border border-surface-border bg-surface-alt px-3 py-1 text-text-muted">Prerrequisito: saber programar en al menos un lenguaje</span>
-        <span class="rounded-full border border-surface-border bg-surface-alt px-3 py-1 text-text-muted">Algebra basica</span>
-      </div>
-    </section>
-
-    <!-- TOC -->
-    <nav class="mb-16 rounded-xl border border-surface-border bg-surface-raised p-6">
-      <h2 class="mb-4 text-sm font-semibold uppercase tracking-wider text-text-muted">Contenido</h2>
-      <ol class="columns-1 gap-x-8 space-y-2 text-sm sm:columns-2">
-        {phases.map((p) => (
-          <li>
-            <a href={`#${p.id}`} class="text-accent hover:text-white transition-colors">
-              Fase {p.num} — {p.title}
-              <span class="ml-2 text-text-muted text-xs">({p.duration})</span>
-            </a>
-          </li>
-        ))}
-        <li><a href="#papers" class="text-accent hover:text-white transition-colors">Lectura Critica de Papers</a></li>
-        <li><a href="#comunidades" class="text-accent hover:text-white transition-colors">Canales y Comunidades</a></li>
-        <li><a href="#dependencias" class="text-accent hover:text-white transition-colors">Secuencia y Dependencias</a></li>
-        <li><a href="#no-incluye" class="text-accent hover:text-white transition-colors">Lo que NO incluye</a></li>
-      </ol>
+  <!-- Side Nav -->
+  <aside class="fixed left-0 top-0 h-full flex-col pt-20 pb-8 px-4 bg-slate-50 w-64 hidden lg:flex z-40" style="box-shadow: 0px 24px 48px rgba(17, 29, 35, 0.06)">
+    <div class="mb-8 px-2">
+      <p class="text-[10px] uppercase tracking-widest text-tertiary font-bold mb-1">Formacion Alternativa</p>
+      <h3 class="font-headline font-bold text-cyan-800 text-lg">AI Software Engineer</h3>
+      <p class="text-xs text-slate-500">Costo cero &middot; 12–18 meses</p>
+    </div>
+    <nav class="flex flex-col gap-1 flex-grow overflow-y-auto">
+      {navItems.map((item, i) => (
+        <a
+          class={`flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm transition-transform duration-200 ${i === 0 ? 'bg-cyan-50 text-cyan-700 border-r-4 border-cyan-700' : 'text-slate-600 hover:text-cyan-600 hover:translate-x-1'}`}
+          href={`#${item.id}`}
+        >
+          <span class="material-symbols-outlined text-[20px]">{item.icon}</span>
+          <span class="font-medium">{item.label}</span>
+        </a>
+      ))}
     </nav>
+    <div class="mt-auto p-4 bg-surface-container-low rounded-2xl">
+      <p class="text-xs font-semibold text-primary mb-2">Prerrequisitos</p>
+      <p class="text-[10px] text-on-surface-variant leading-relaxed mb-3">Saber programar en al menos un lenguaje. Algebra basica.</p>
+      <a href="#fase-0" class="block w-full py-2 bg-gradient-to-r from-primary to-primary-container text-white text-xs font-bold rounded-xl text-center shadow-lg shadow-primary/20 active:scale-95 transition-all">
+        Comenzar Ruta
+      </a>
+    </div>
+  </aside>
 
-    <!-- Phases -->
-    {phases.map((phase) => (
-      <section id={phase.id} class="mb-20">
-        <!-- Phase header -->
-        <div class="flex items-start gap-4 mb-6">
-          <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-accent-dim text-sm font-bold text-white">{phase.num}</span>
+  <!-- Main Content -->
+  <main class="lg:ml-64 pt-24 px-6 pb-12">
+    <div class="max-w-6xl mx-auto">
+
+      <!-- Hero -->
+      <header id="hero" class="mb-16">
+        <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
           <div>
-            <h2 class="text-2xl font-bold text-white">{phase.title}</h2>
-            <span class="text-sm text-text-muted">{phase.duration}</span>
+            <span class="text-tertiary font-label font-semibold text-sm tracking-widest uppercase mb-2 block">Ruta Profesional</span>
+            <h1 class="text-5xl font-extrabold text-on-surface tracking-tight leading-[1.1]">AI Software <span class="text-primary italic">Engineer</span></h1>
+            <p class="text-on-surface-variant text-lg max-w-2xl mt-4">Formacion alternativa de alta calidad. Todos los recursos son de acceso gratuito verificado al momento de publicacion.</p>
+          </div>
+          <div class="flex gap-4">
+            <div class="px-6 py-4 bg-surface-container-lowest rounded-xl shadow-card border border-outline-variant/10">
+              <p class="text-xs font-label text-slate-500 uppercase tracking-widest mb-1">Duracion</p>
+              <p class="text-2xl font-headline font-bold text-secondary">12–18 meses</p>
+            </div>
+            <div class="px-6 py-4 bg-surface-container-lowest rounded-xl shadow-card border border-outline-variant/10">
+              <p class="text-xs font-label text-slate-500 uppercase tracking-widest mb-1">Dedicacion</p>
+              <p class="text-2xl font-headline font-bold text-primary">~15h/sem</p>
+            </div>
           </div>
         </div>
+      </header>
 
-        <!-- Quote -->
-        <blockquote class="mb-6 border-l-2 border-accent-dim pl-4 text-text-secondary italic">
-          {phase.quote}
-        </blockquote>
-
-        <!-- Objective -->
-        <div class="mb-6 rounded-lg border border-surface-border bg-surface-alt p-4">
-          <span class="text-xs font-semibold uppercase tracking-wider text-text-muted">Objetivo</span>
-          <p class="mt-1 text-text-primary">{phase.objective}</p>
-        </div>
-
-        <!-- Resources table -->
-        <h3 class="text-sm font-semibold uppercase tracking-wider text-text-muted mb-3">Recursos gratuitos</h3>
-        <div class="overflow-x-auto mb-6">
-          <table class="w-full text-sm">
-            <thead>
-              <tr class="border-b border-surface-border">
-                <th class="py-3 pr-4 text-left font-semibold text-white">Recurso</th>
-                <th class="py-3 pr-4 text-left font-semibold text-white hidden sm:table-cell">Formato</th>
-                <th class="py-3 text-left font-semibold text-white w-16">Link</th>
-              </tr>
-            </thead>
-            <tbody class="text-text-secondary">
-              {phase.resources.map((r) => (
-                <tr class="border-b border-surface-border/50">
-                  <td class="py-3 pr-4">
-                    <span class="font-medium text-text-primary">{r.name}</span>
-                    {r.desc && <span class="text-text-muted"> — {r.desc}</span>}
-                    <span class="sm:hidden block text-xs text-text-muted mt-0.5">{r.format}</span>
-                  </td>
-                  <td class="py-3 pr-4 text-text-muted hidden sm:table-cell">{r.format}</td>
-                  <td class="py-3">
-                    <a href={r.url} target="_blank" rel="noopener" class="text-accent hover:text-white transition-colors text-xs font-medium">Abrir &rarr;</a>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-
-        <!-- Phase-specific extras -->
-        {phase.deliverable && (
-          <div class="rounded-lg border border-stitch-green/30 bg-stitch-green/5 p-4 text-sm">
-            <strong class="text-stitch-green">Entregable de fase:</strong>
-            <span class="text-text-secondary ml-1">{phase.deliverable}</span>
+      <!-- Phase Cards -->
+      {phases.map((phase) => (
+        <section id={phase.id} class="mb-16 scroll-mt-24">
+          <!-- Phase Header -->
+          <div class="flex items-start gap-4 mb-6">
+            <div class={`w-12 h-12 rounded-2xl flex items-center justify-center text-white shadow-lg ${phase.color === 'primary' ? 'bg-primary' : phase.color === 'secondary' ? 'bg-secondary' : 'bg-tertiary'}`}>
+              <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">{phase.icon}</span>
+            </div>
+            <div>
+              <span class={`text-xs font-bold uppercase tracking-widest ${phase.color === 'primary' ? 'text-primary' : phase.color === 'secondary' ? 'text-secondary' : 'text-tertiary'}`}>Fase {phase.num} &middot; {phase.duration}</span>
+              <h2 class="text-3xl font-extrabold text-on-surface tracking-tight">{phase.title}</h2>
+            </div>
           </div>
-        )}
 
-        {phase.keyConcept && (
-          <div class="rounded-lg border border-stitch-yellow/30 bg-stitch-yellow/5 p-4 text-sm">
-            <strong class="text-stitch-yellow">Concepto clave:</strong>
-            <span class="text-text-secondary ml-1">{phase.keyConcept}</span>
+          <!-- Quote -->
+          <div class="glass-panel rounded-2xl p-5 mb-6 border border-outline-variant/20">
+            <p class="text-on-surface-variant italic leading-relaxed">&ldquo;{phase.quote}&rdquo;</p>
           </div>
-        )}
 
-        {phase.questions && (
-          <div class="rounded-lg border border-accent-dim/30 bg-accent-dim/5 p-4 text-sm">
-            <strong class="text-accent">Preguntas que debes poder responder:</strong>
-            <ul class="mt-2 space-y-1 text-text-secondary">
-              {phase.questions.map((q) => (
-                <li class="flex items-start gap-2">
-                  <span class="text-accent mt-1 text-xs">&#9656;</span>
-                  <span>{q}</span>
-                </li>
-              ))}
-            </ul>
+          <!-- Objective -->
+          <div class="bg-surface-container-low rounded-2xl p-6 mb-6">
+            <p class="text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-2">Objetivo</p>
+            <p class="text-on-surface leading-relaxed">{phase.objective}</p>
           </div>
-        )}
 
-        {phase.extraReading && (
-          <div class="mt-4">
-            <h3 class="text-sm font-semibold uppercase tracking-wider text-text-muted mb-2">Lectura complementaria esencial</h3>
-            <ul class="space-y-1 text-sm">
-              {phase.extraReading.map((r) => (
-                <li>
-                  <a href={r.url} target="_blank" rel="noopener" class="text-accent hover:text-white transition-colors">{r.name} &rarr;</a>
-                </li>
-              ))}
-            </ul>
+          <!-- Resources Grid -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-6">
+            {phase.resources.map((r) => (
+              <a href={r.url} target="_blank" rel="noopener" class="group bg-surface-container-lowest rounded-xl p-4 shadow-sm hover:shadow-card border border-transparent hover:border-outline-variant/30 transition-all">
+                <div class="flex items-start justify-between mb-2">
+                  <span class={`px-2 py-1 text-[10px] font-bold rounded uppercase tracking-wider ${phase.color === 'primary' ? 'bg-primary/10 text-primary' : phase.color === 'secondary' ? 'bg-secondary/10 text-secondary' : 'bg-tertiary/10 text-tertiary'}`}>{r.format}</span>
+                  <span class="material-symbols-outlined text-slate-300 group-hover:text-primary transition-colors text-[18px]">open_in_new</span>
+                </div>
+                <h4 class="font-bold text-on-surface leading-tight group-hover:text-primary transition-colors">{r.name}</h4>
+                {r.desc && <p class="text-sm text-on-surface-variant mt-1">{r.desc}</p>}
+              </a>
+            ))}
           </div>
-        )}
 
-        {phase.decisionTree && (
-          <div class="mt-4 rounded-lg border border-surface-border bg-surface-alt p-5">
-            <h3 class="text-sm font-semibold uppercase tracking-wider text-text-muted mb-3">Decision critica que debes dominar</h3>
-            <pre class="text-sm text-text-secondary leading-relaxed overflow-x-auto"><code>{`¿El conocimiento cambia frecuentemente?
+          <!-- Phase-specific extras -->
+          {phase.extra.type === 'deliverable' && (
+            <div class="bg-secondary/10 rounded-2xl p-5 border border-secondary/20">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="material-symbols-outlined text-secondary">task_alt</span>
+                <span class="text-xs font-bold text-secondary uppercase tracking-wider">Entregable de fase</span>
+              </div>
+              <p class="text-on-surface">{phase.extra.text}</p>
+            </div>
+          )}
+
+          {phase.extra.type === 'concept' && (
+            <div class="bg-tertiary/5 rounded-2xl p-5 border border-tertiary/20">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="material-symbols-outlined text-tertiary">lightbulb</span>
+                <span class="text-xs font-bold text-tertiary uppercase tracking-wider">Concepto clave</span>
+              </div>
+              <p class="text-on-surface">{phase.extra.text}</p>
+            </div>
+          )}
+
+          {phase.extra.type === 'questions' && (
+            <div class="bg-primary/5 rounded-2xl p-5 border border-primary/20">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="material-symbols-outlined text-primary">quiz</span>
+                <span class="text-xs font-bold text-primary uppercase tracking-wider">Preguntas que debes responder</span>
+              </div>
+              <div class="space-y-2">
+                {phase.extra.items.map((q) => (
+                  <div class="flex items-start gap-3">
+                    <span class="material-symbols-outlined text-primary text-[16px] mt-0.5">chevron_right</span>
+                    <p class="text-on-surface text-sm">{q}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {phase.extra.type === 'reading' && (
+            <div class="bg-surface-container-high rounded-2xl p-5">
+              <p class="text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-3">Lectura complementaria esencial</p>
+              <div class="space-y-2">
+                {phase.extra.items.map((r) => (
+                  <a href={r.url} target="_blank" rel="noopener" class="flex items-center gap-2 text-primary hover:text-primary-container transition-colors text-sm font-semibold">
+                    <span class="material-symbols-outlined text-[16px]">article</span>
+                    {r.name}
+                  </a>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {phase.extra.type === 'decision' && (
+            <div class="bg-surface-container-low rounded-2xl p-6 border border-outline-variant/10">
+              <div class="flex items-center gap-2 mb-4">
+                <span class="material-symbols-outlined text-secondary">decision</span>
+                <span class="text-xs font-bold text-secondary uppercase tracking-wider">Decision critica que debes dominar</span>
+              </div>
+              <pre class="text-sm text-on-surface leading-relaxed font-body overflow-x-auto">{`¿El conocimiento cambia frecuentemente?
   → Si → RAG
   → No → ¿El comportamiento del modelo necesita cambiar?
             → Si → ¿Tienes >1000 ejemplos de calidad?
                       → Si → Fine-tuning (LoRA/QLoRA)
                       → No → Few-shot prompting
-            → No → Zero-shot con system prompt optimizado`}</code></pre>
-          </div>
-        )}
+            → No → Zero-shot con system prompt optimizado`}</pre>
+            </div>
+          )}
 
-        {phase.metrics && (
-          <div class="rounded-lg border border-stitch-red/30 bg-stitch-red/5 p-4 text-sm">
-            <strong class="text-stitch-red">Metricas que debes saber calcular:</strong>
-            <ul class="mt-2 space-y-1 text-text-secondary">
-              {phase.metrics.map((m) => (
-                <li class="flex items-start gap-2">
-                  <span class="text-stitch-red mt-1 text-xs">&#9656;</span>
-                  <span>{m}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
+          {phase.extra.type === 'metrics' && (
+            <div class="bg-tertiary/5 rounded-2xl p-5 border border-tertiary/20">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="material-symbols-outlined text-tertiary">monitoring</span>
+                <span class="text-xs font-bold text-tertiary uppercase tracking-wider">Metricas que debes calcular</span>
+              </div>
+              <div class="space-y-2">
+                {phase.extra.items.map((m) => (
+                  <div class="flex items-start gap-3">
+                    <span class="material-symbols-outlined text-tertiary text-[16px] mt-0.5">chevron_right</span>
+                    <p class="text-on-surface text-sm">{m}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
 
-        {phase.skills && (
-          <div class="rounded-lg border border-stitch-yellow/30 bg-stitch-yellow/5 p-4 text-sm">
-            <strong class="text-stitch-yellow">Lo que debes poder hacer:</strong>
-            <ul class="mt-2 space-y-1 text-text-secondary">
-              {phase.skills.map((s) => (
-                <li class="flex items-start gap-2">
-                  <span class="text-stitch-yellow mt-1 text-xs">&#9656;</span>
-                  <span>{s}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-      </section>
-    ))}
+          {phase.extra.type === 'skills' && (
+            <div class="bg-primary/5 rounded-2xl p-5 border border-primary/20">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="material-symbols-outlined text-primary">verified</span>
+                <span class="text-xs font-bold text-primary uppercase tracking-wider">Lo que debes poder hacer</span>
+              </div>
+              <div class="space-y-2">
+                {phase.extra.items.map((s) => (
+                  <div class="flex items-start gap-3">
+                    <span class="material-symbols-outlined text-primary text-[16px] mt-0.5">chevron_right</span>
+                    <p class="text-on-surface text-sm">{s}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </section>
+      ))}
 
-    <!-- Papers -->
-    <section id="papers" class="mb-20">
-      <div class="flex items-start gap-4 mb-6">
-        <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-surface-raised border border-surface-border text-sm font-bold text-accent">T</span>
-        <div>
-          <h2 class="text-2xl font-bold text-white">Fase Transversal — Lectura Critica de Papers</h2>
-          <span class="text-sm text-text-muted">Desde Fase 2 en adelante, 2-3 papers/semana</span>
+      <!-- Papers -->
+      <section id="papers" class="mb-16 scroll-mt-24">
+        <div class="flex items-start gap-4 mb-6">
+          <div class="w-12 h-12 rounded-2xl bg-surface-container-highest flex items-center justify-center text-primary shadow-sm">
+            <span class="material-symbols-outlined">menu_book</span>
+          </div>
+          <div>
+            <span class="text-xs font-bold text-primary uppercase tracking-widest">Fase Transversal &middot; Desde Fase 2</span>
+            <h2 class="text-3xl font-extrabold text-on-surface tracking-tight">Lectura Critica de Papers</h2>
+          </div>
         </div>
-      </div>
 
-      <blockquote class="mb-6 border-l-2 border-accent-dim pl-4 text-text-secondary italic">
-        No como bullet point sino como practica semanal.
-      </blockquote>
+        <div class="glass-panel rounded-2xl p-5 mb-6 border border-outline-variant/20">
+          <p class="text-on-surface-variant italic">&ldquo;No como bullet point sino como practica semanal. 2-3 papers/semana.&rdquo;</p>
+        </div>
 
-      <div class="overflow-x-auto mb-6">
-        <table class="w-full text-sm">
-          <thead>
-            <tr class="border-b border-surface-border">
-              <th class="py-3 pr-4 text-left font-semibold text-white">Recurso</th>
-              <th class="py-3 pr-4 text-left font-semibold text-white hidden sm:table-cell">Formato</th>
-              <th class="py-3 text-left font-semibold text-white w-16">Link</th>
-            </tr>
-          </thead>
-          <tbody class="text-text-secondary">
-            {papersResources.map((r) => (
-              <tr class="border-b border-surface-border/50">
-                <td class="py-3 pr-4">
-                  <span class="font-medium text-text-primary">{r.name}</span>
-                  {r.desc && <span class="text-text-muted"> — {r.desc}</span>}
-                </td>
-                <td class="py-3 pr-4 text-text-muted hidden sm:table-cell">{r.format}</td>
-                <td class="py-3">
-                  <a href={r.url} target="_blank" rel="noopener" class="text-accent hover:text-white transition-colors text-xs font-medium">Abrir &rarr;</a>
-                </td>
-              </tr>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-8">
+          {[
+            { name: 'ArXiv Sanity Lite', desc: 'Karpathy', format: 'Web', url: 'https://arxiv-sanity-lite.com/' },
+            { name: 'Papers With Code', desc: 'Papers + implementaciones + benchmarks', format: 'Web', url: 'https://paperswithcode.com/' },
+            { name: 'Yannic Kilcher', desc: 'Paper reviews con analisis critico', format: 'YouTube', url: 'https://www.youtube.com/@YannicKilcher' },
+            { name: 'Two Minute Papers', desc: 'Overview rapido de papers nuevos', format: 'YouTube', url: 'https://www.youtube.com/@TwoMinutePapers' },
+            { name: 'How to Read a Paper', desc: 'Keshav — 3 paginas esenciales', format: 'PDF', url: 'https://svr-sk818-web.cl.cam.ac.uk/keshav/papers/07/paper-reading.pdf' },
+          ].map((r) => (
+            <a href={r.url} target="_blank" rel="noopener" class="group bg-surface-container-lowest rounded-xl p-4 shadow-sm hover:shadow-card border border-transparent hover:border-outline-variant/30 transition-all">
+              <div class="flex items-start justify-between mb-2">
+                <span class="px-2 py-1 bg-primary/10 text-primary text-[10px] font-bold rounded uppercase tracking-wider">{r.format}</span>
+                <span class="material-symbols-outlined text-slate-300 group-hover:text-primary transition-colors text-[18px]">open_in_new</span>
+              </div>
+              <h4 class="font-bold text-on-surface leading-tight group-hover:text-primary transition-colors">{r.name}</h4>
+              <p class="text-sm text-on-surface-variant mt-1">{r.desc}</p>
+            </a>
+          ))}
+        </div>
+
+        <!-- Reading Method -->
+        <div class="bg-surface-container-low rounded-2xl p-6">
+          <p class="text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-4">Metodo de lectura</p>
+          <div class="space-y-4">
+            {[
+              { step: '1', time: '5 min', title: 'Primera pasada', desc: 'Abstract, figuras, conclusiones. ¿Cual es el claim?' },
+              { step: '2', time: '30 min', title: 'Segunda pasada', desc: 'Metodologia, baselines, ablations. ¿La evidencia soporta el claim?' },
+              { step: '3', time: 'Si vale', title: 'Tercera pasada', desc: '¿Es reproducible? ¿Que asumen que no mencionan? ¿Aplica a tu contexto?' },
+            ].map((p) => (
+              <div class="flex items-start gap-4">
+                <div class="w-10 h-10 rounded-lg bg-surface-container-highest flex items-center justify-center flex-shrink-0">
+                  <span class="font-headline font-bold text-primary">{p.step}</span>
+                </div>
+                <div>
+                  <p class="font-bold text-sm">{p.title} <span class="text-on-surface-variant font-normal">({p.time})</span></p>
+                  <p class="text-sm text-on-surface-variant">{p.desc}</p>
+                </div>
+              </div>
             ))}
-          </tbody>
-        </table>
-      </div>
-
-      <div class="rounded-lg border border-surface-border bg-surface-alt p-5">
-        <h3 class="text-sm font-semibold uppercase tracking-wider text-text-muted mb-3">Metodo de lectura para un paper</h3>
-        <div class="space-y-3">
-          <div class="flex items-start gap-3">
-            <span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-accent-dim text-xs font-bold text-white">1</span>
-            <div>
-              <span class="font-medium text-text-primary">Primera pasada (5 min)</span>
-              <p class="text-sm text-text-muted">Abstract, figuras, conclusiones. ¿Cual es el claim?</p>
-            </div>
-          </div>
-          <div class="flex items-start gap-3">
-            <span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-accent-dim text-xs font-bold text-white">2</span>
-            <div>
-              <span class="font-medium text-text-primary">Segunda pasada (30 min)</span>
-              <p class="text-sm text-text-muted">Metodologia, baselines, ablations. ¿La evidencia soporta el claim?</p>
-            </div>
-          </div>
-          <div class="flex items-start gap-3">
-            <span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-accent-dim text-xs font-bold text-white">3</span>
-            <div>
-              <span class="font-medium text-text-primary">Tercera pasada (si vale)</span>
-              <p class="text-sm text-text-muted">¿Es reproducible? ¿Que asumen que no mencionan? ¿Aplica a tu contexto?</p>
-            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Communities -->
-    <section id="comunidades" class="mb-20">
-      <h2 class="text-2xl font-bold text-white mb-6">Canales y Comunidades</h2>
-      <div class="grid gap-3 sm:grid-cols-2">
-        {communityResources.map((r) => (
-          <a href={r.url} target="_blank" rel="noopener" class="group rounded-lg border border-surface-border bg-surface-alt p-4 transition-colors hover:border-accent-dim">
-            <span class="font-medium text-white group-hover:text-accent transition-colors">{r.name}</span>
-            <p class="mt-1 text-xs text-text-muted">{r.type}</p>
-          </a>
-        ))}
-      </div>
-    </section>
-
-    <!-- Dependency diagram -->
-    <section id="dependencias" class="mb-20">
-      <h2 class="text-2xl font-bold text-white mb-6">Secuencia y Dependencias</h2>
-      <div class="rounded-xl border border-surface-border bg-surface-alt p-6 overflow-x-auto">
-        <pre class="text-sm text-text-secondary leading-relaxed"><code>{`Fase 0 (SWE) ──────────────────────────────┐
+      <!-- Dependency Diagram -->
+      <section class="mb-16">
+        <div class="bg-gradient-to-br from-primary to-primary-container rounded-3xl p-8 text-on-primary relative overflow-hidden shadow-2xl">
+          <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-tertiary-container/20 rounded-full blur-3xl"></div>
+          <div class="absolute right-10 top-10 w-24 h-24 border border-white/10 rounded-full"></div>
+          <div class="relative z-10">
+            <h3 class="text-3xl font-bold font-headline mb-4">Secuencia y Dependencias</h3>
+            <pre class="text-sm text-on-primary-container/90 leading-relaxed font-body overflow-x-auto">{`Fase 0 (SWE) ──────────────────────────────┐
                                            │
 Fase 1 (Matematicas) ─────┐               │
                            ├── Fase 3 (DL) ── Fase 4 (LLMs) ── Fase 5 (Produccion)
@@ -473,37 +439,80 @@ Fase 2 (ML Clasico) ──────┘               │                     
                                            │                          │
                                            └───── Fase 6 (Seguridad) ─┘
 
-Fase Transversal (Papers) ── desde Fase 2 en adelante, 2-3 papers/semana`}</code></pre>
-      </div>
-    </section>
-
-    <!-- What's NOT included -->
-    <section id="no-incluye" class="mb-20">
-      <h2 class="text-2xl font-bold text-white mb-6">Lo que esta ruta NO incluye (y por que)</h2>
-      <div class="space-y-3">
-        {excluded.map((e) => (
-          <div class="rounded-lg border border-surface-border bg-surface-alt p-4">
-            <span class="font-medium text-stitch-red">{e.item}</span>
-            <p class="mt-1 text-sm text-text-muted">{e.reason}</p>
+Fase Transversal (Papers) ── desde Fase 2 en adelante`}</pre>
           </div>
-        ))}
-      </div>
-    </section>
+        </div>
+      </section>
 
-    <!-- Footer note -->
-    <div class="text-center text-sm text-text-muted">
-      <p>Ultima actualizacion: abril 2026</p>
-      <p class="mt-1">Todos los recursos listados son de acceso gratuito verificado al momento de publicacion.</p>
+      <!-- Communities -->
+      <section id="comunidades" class="mb-16 scroll-mt-24">
+        <h2 class="text-3xl font-extrabold text-on-surface tracking-tight mb-6">Canales y Comunidades</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          {communities.map((c) => (
+            <a href={c.url} target="_blank" rel="noopener" class="group bg-surface-container-lowest rounded-xl p-4 shadow-sm hover:shadow-card border border-transparent hover:border-outline-variant/30 transition-all">
+              <div class="flex items-center gap-3">
+                <div class="p-2 bg-secondary/10 rounded-xl text-secondary">
+                  <span class="material-symbols-outlined text-[20px]">forum</span>
+                </div>
+                <div>
+                  <h4 class="font-bold text-on-surface group-hover:text-primary transition-colors text-sm">{c.name}</h4>
+                  <p class="text-xs text-on-surface-variant">{c.type}</p>
+                </div>
+              </div>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      <!-- What's NOT included -->
+      <section class="mb-16">
+        <h2 class="text-3xl font-extrabold text-on-surface tracking-tight mb-6">Lo que NO incluye</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+          {[
+            { item: 'C++ generico', reason: 'Solo relevante si vas a escribir kernels CUDA. Si llegas ahi, ya sabras que lo necesitas.' },
+            { item: 'LangChain como skill central', reason: 'Es una abstraccion que cambia cada mes. Entiende los patterns subyacentes.' },
+            { item: 'Certificaciones cloud especificas', reason: 'Aprende los conceptos (containers, serverless) y el vendor sera intercambiable.' },
+            { item: 'Prompt engineering aislado', reason: 'Integrado en Fase 4 como decision de ingenieria, no como habilidad decorativa.' },
+          ].map((e) => (
+            <div class="bg-surface-container-lowest rounded-xl p-5 shadow-sm border border-outline-variant/10">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="material-symbols-outlined text-error text-[18px]">block</span>
+                <span class="font-bold text-on-surface">{e.item}</span>
+              </div>
+              <p class="text-sm text-on-surface-variant">{e.reason}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="text-center text-sm text-on-surface-variant pt-8 border-t border-outline-variant/20">
+        <p>Ultima actualizacion: abril 2026 &middot; Todos los recursos son de acceso gratuito verificado.</p>
+        <p class="mt-2">
+          Creado por <a href="https://github.com/gonzalezulises" target="_blank" rel="noopener" class="text-primary font-semibold hover:underline">Ulises Gonzalez</a>
+        </p>
+      </footer>
+
     </div>
   </main>
 
-  <!-- Footer -->
-  <footer class="mt-12 border-t border-surface-border">
-    <div class="mx-auto max-w-4xl px-6 py-8 text-center text-sm text-text-muted">
-      <p>
-        Creado por
-        <a href="https://github.com/gonzalezulises" target="_blank" rel="noopener" class="text-accent hover:text-white transition-colors">Ulises Gonzalez</a>
-      </p>
-    </div>
-  </footer>
+  <!-- Mobile Bottom Nav -->
+  <nav class="lg:hidden fixed bottom-0 left-0 w-full bg-slate-50/90 backdrop-blur-xl flex justify-around items-center h-14 z-50 border-t border-outline-variant/20">
+    <a class="text-cyan-700 flex flex-col items-center" href="#hero">
+      <span class="material-symbols-outlined text-[20px]">dashboard</span>
+      <span class="text-[10px] font-bold">Home</span>
+    </a>
+    <a class="text-slate-500 flex flex-col items-center" href="#fase-0">
+      <span class="material-symbols-outlined text-[20px]">school</span>
+      <span class="text-[10px]">Fases</span>
+    </a>
+    <a class="text-slate-500 flex flex-col items-center" href="#papers">
+      <span class="material-symbols-outlined text-[20px]">menu_book</span>
+      <span class="text-[10px]">Papers</span>
+    </a>
+    <a class="text-slate-500 flex flex-col items-center" href="#comunidades">
+      <span class="material-symbols-outlined text-[20px]">groups</span>
+      <span class="text-[10px]">Social</span>
+    </a>
+  </nav>
 </Layout>

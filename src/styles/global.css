@@ -1,22 +1,61 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
-@custom-variant dark (&:where(.dark, .dark *));
-
 @theme {
-  --color-stitch-blue: #4285f4;
-  --color-stitch-green: #34a853;
-  --color-stitch-yellow: #fbbc04;
-  --color-stitch-red: #ea4335;
-  --color-surface: #0a0a0a;
-  --color-surface-alt: #141414;
-  --color-surface-raised: #1a1a1a;
-  --color-surface-border: #2a2a2a;
-  --color-text-primary: #e5e5e5;
-  --color-text-secondary: #a3a3a3;
-  --color-text-muted: #737373;
-  --color-accent: #8ab4f8;
-  --color-accent-dim: #4285f4;
+  /* Stitch Design System — Material Design 3 tokens */
+  --color-surface: #f4faff;
+  --color-surface-bright: #f4faff;
+  --color-surface-dim: #cfdce4;
+  --color-surface-container: #e3f0f8;
+  --color-surface-container-low: #e9f6fd;
+  --color-surface-container-high: #ddeaf2;
+  --color-surface-container-highest: #d7e4ec;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-variant: #d7e4ec;
+  --color-surface-tint: #21648c;
+  --color-background: #f4faff;
+
+  --color-primary: #004364;
+  --color-primary-container: #135b83;
+  --color-primary-fixed: #cae6ff;
+  --color-primary-fixed-dim: #92cdfa;
+  --color-on-primary: #ffffff;
+  --color-on-primary-container: #98d2ff;
+  --color-on-primary-fixed: #001e2f;
+  --color-on-primary-fixed-variant: #004b6f;
+
+  --color-secondary: #006972;
+  --color-secondary-container: #8feefc;
+  --color-secondary-fixed: #92f1fe;
+  --color-secondary-fixed-dim: #75d5e2;
+  --color-on-secondary: #ffffff;
+  --color-on-secondary-container: #006d77;
+  --color-on-secondary-fixed: #001f23;
+
+  --color-tertiary: #4700bc;
+  --color-tertiary-container: #5f26e2;
+  --color-tertiary-fixed: #e8deff;
+  --color-tertiary-fixed-dim: #cdbdff;
+  --color-on-tertiary: #ffffff;
+  --color-on-tertiary-container: #d2c3ff;
+  --color-on-tertiary-fixed: #20005f;
+
+  --color-error: #ba1a1a;
+  --color-error-container: #ffdad6;
+  --color-on-error: #ffffff;
+
+  --color-on-surface: #111d23;
+  --color-on-surface-variant: #3f4949;
+  --color-on-background: #111d23;
+  --color-outline: #6f7979;
+  --color-outline-variant: #bec8c9;
+  --color-inverse-surface: #263238;
+  --color-inverse-on-surface: #e6f3fb;
+  --color-inverse-primary: #92cdfa;
+
+  --font-headline: "Manrope", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+  --font-label: "Inter", system-ui, sans-serif;
 }
 
 html {
@@ -24,72 +63,25 @@ html {
 }
 
 body {
+  font-family: var(--font-body);
   background-color: var(--color-surface);
-  color: var(--color-text-primary);
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  color: var(--color-on-surface);
 }
 
-/* Custom prose overrides for dark theme */
-.prose {
-  --tw-prose-body: var(--color-text-primary);
-  --tw-prose-headings: #ffffff;
-  --tw-prose-links: var(--color-accent);
-  --tw-prose-bold: #ffffff;
-  --tw-prose-counters: var(--color-text-secondary);
-  --tw-prose-bullets: var(--color-text-muted);
-  --tw-prose-hr: var(--color-surface-border);
-  --tw-prose-quotes: var(--color-text-secondary);
-  --tw-prose-quote-borders: var(--color-accent-dim);
-  --tw-prose-captions: var(--color-text-muted);
-  --tw-prose-code: var(--color-accent);
-  --tw-prose-pre-code: var(--color-text-primary);
-  --tw-prose-pre-bg: var(--color-surface-alt);
-  --tw-prose-th-borders: var(--color-surface-border);
-  --tw-prose-td-borders: var(--color-surface-border);
+h1, h2, h3, h4, .font-headline {
+  font-family: var(--font-headline);
 }
 
-.prose :where(code):not(:where(pre *)) {
-  background-color: var(--color-surface-raised);
-  padding: 0.15em 0.4em;
-  border-radius: 0.25rem;
-  font-size: 0.875em;
-  font-weight: 500;
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
 }
 
-.prose :where(code):not(:where(pre *))::before,
-.prose :where(code):not(:where(pre *))::after {
-  content: none;
+.glass-panel {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 
-.prose :where(pre) {
-  border: 1px solid var(--color-surface-border);
-  border-radius: 0.75rem;
-}
-
-.prose :where(table) {
-  font-size: 0.9em;
-}
-
-.prose :where(th) {
-  text-align: left;
-  font-weight: 600;
-  color: #ffffff;
-}
-
-.prose :where(a) {
-  text-decoration: none;
-  transition: color 0.15s;
-}
-
-.prose :where(a):hover {
-  color: #ffffff;
-  text-decoration: underline;
-}
-
-/* Smooth gradient backgrounds */
-.gradient-mesh {
-  background:
-    radial-gradient(ellipse at 20% 0%, rgba(66, 133, 244, 0.08) 0%, transparent 50%),
-    radial-gradient(ellipse at 80% 100%, rgba(52, 168, 83, 0.06) 0%, transparent 50%),
-    var(--color-surface);
+.shadow-card {
+  box-shadow: 0px 24px 48px rgba(17, 29, 35, 0.06);
 }
