@@ -3,59 +3,59 @@
 
 @theme {
   /* Stitch Design System — Material Design 3 tokens */
-  --color-surface: #f4faff;
-  --color-surface-bright: #f4faff;
-  --color-surface-dim: #cfdce4;
-  --color-surface-container: #e3f0f8;
-  --color-surface-container-low: #e9f6fd;
-  --color-surface-container-high: #ddeaf2;
-  --color-surface-container-highest: #d7e4ec;
-  --color-surface-container-lowest: #ffffff;
-  --color-surface-variant: #d7e4ec;
-  --color-surface-tint: #21648c;
-  --color-background: #f4faff;
+  --color-surface: #F0EDE5;
+  --color-surface-bright: #FBFAF6;
+  --color-surface-dim: #E4E0D6;
+  --color-surface-container: #FBFAF6;
+  --color-surface-container-low: #FBFAF6;
+  --color-surface-container-high: #E4E0D6;
+  --color-surface-container-highest: #E4E0D6;
+  --color-surface-container-lowest: #FFFFFF;
+  --color-surface-variant: #E4E0D6;
+  --color-surface-tint: #289448;
+  --color-background: #F0EDE5;
 
-  --color-primary: #004364;
-  --color-primary-container: #135b83;
-  --color-primary-fixed: #cae6ff;
-  --color-primary-fixed-dim: #92cdfa;
-  --color-on-primary: #ffffff;
-  --color-on-primary-container: #98d2ff;
-  --color-on-primary-fixed: #001e2f;
-  --color-on-primary-fixed-variant: #004b6f;
+  --color-primary: #1F7038;
+  --color-primary-container: #289448;
+  --color-primary-fixed: #E1EEE3;
+  --color-primary-fixed-dim: #A8D9B6;
+  --color-on-primary: #FFFFFF;
+  --color-on-primary-container: #E1EEE3;
+  --color-on-primary-fixed: #0C2A15;
+  --color-on-primary-fixed-variant: #1F7038;
 
-  --color-secondary: #006972;
-  --color-secondary-container: #8feefc;
-  --color-secondary-fixed: #92f1fe;
-  --color-secondary-fixed-dim: #75d5e2;
-  --color-on-secondary: #ffffff;
-  --color-on-secondary-container: #006d77;
-  --color-on-secondary-fixed: #001f23;
+  --color-secondary: #178A9A;
+  --color-secondary-container: #D6EEF1;
+  --color-secondary-fixed: #D6EEF1;
+  --color-secondary-fixed-dim: #9FD5DD;
+  --color-on-secondary: #FFFFFF;
+  --color-on-secondary-container: #10606C;
+  --color-on-secondary-fixed: #04262A;
 
-  --color-tertiary: #4700bc;
-  --color-tertiary-container: #5f26e2;
-  --color-tertiary-fixed: #e8deff;
-  --color-tertiary-fixed-dim: #cdbdff;
-  --color-on-tertiary: #ffffff;
-  --color-on-tertiary-container: #d2c3ff;
-  --color-on-tertiary-fixed: #20005f;
+  --color-tertiary: #0C2A15;
+  --color-tertiary-container: #1F7038;
+  --color-tertiary-fixed: #E1EEE3;
+  --color-tertiary-fixed-dim: #A8D9B6;
+  --color-on-tertiary: #FFFFFF;
+  --color-on-tertiary-container: #E1EEE3;
+  --color-on-tertiary-fixed: #0C2A15;
 
-  --color-error: #ba1a1a;
-  --color-error-container: #ffdad6;
-  --color-on-error: #ffffff;
+  --color-error: #C32421;
+  --color-error-container: #F7E0DF;
+  --color-on-error: #FFFFFF;
 
-  --color-on-surface: #111d23;
-  --color-on-surface-variant: #3f4949;
-  --color-on-background: #111d23;
-  --color-outline: #6f7979;
-  --color-outline-variant: #bec8c9;
-  --color-inverse-surface: #263238;
-  --color-inverse-on-surface: #e6f3fb;
-  --color-inverse-primary: #92cdfa;
+  --color-on-surface: #151414;
+  --color-on-surface-variant: #383838;
+  --color-on-background: #151414;
+  --color-outline: #B0AA9C;
+  --color-outline-variant: #D7D2C6;
+  --color-inverse-surface: #151414;
+  --color-inverse-on-surface: #F0EDE5;
+  --color-inverse-primary: #34A856;
 
-  --font-headline: "Manrope", system-ui, sans-serif;
-  --font-body: "Inter", system-ui, sans-serif;
-  --font-label: "Inter", system-ui, sans-serif;
+  --font-headline: "Source Serif 4", ui-serif, Georgia, "Times New Roman", serif;
+  --font-body: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-label: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
 html {
@@ -70,6 +70,9 @@ body {
 
 h1, h2, h3, h4, .font-headline {
   font-family: var(--font-headline);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
 }
 
 .material-symbols-outlined {
@@ -77,11 +80,11 @@ h1, h2, h3, h4, .font-headline {
 }
 
 .glass-panel {
-  background: rgba(255, 255, 255, 0.7);
+  background: color-mix(in srgb, #F0EDE5 88%, transparent);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
 }
 
 .shadow-card {
-  box-shadow: 0px 24px 48px rgba(17, 29, 35, 0.06);
+  box-shadow: 0 4px 20px -4px rgba(21, 20, 20, 0.10);
 }

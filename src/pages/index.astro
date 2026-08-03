@@ -1,60 +1,66 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import '../styles/global.css';
+import version from '../../version.json';
+
+const MESES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio',
+  'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+const [vAnio, vMes, vDia] = version.actualizado.split('-').map(Number);
+const actualizado = vDia + ' de ' + MESES[vMes - 1] + ' de ' + vAnio;
 
 const phases = [
   {
     id: 'fase-0', num: '0', icon: 'terminal', color: 'primary',
-    title: 'Ingenieria de Software', duration: '8–10 semanas',
-    quote: 'Sin esta base, todo lo que sigue es scripting glorificado. La mayoria de "AI engineers" fracasan aqui, no en el modelo.',
-    objective: 'Dominar Python a nivel profesional, diseno de sistemas, testing, CI/CD y SQL como ciudadano de primera clase.',
+    title: 'Ingeniería de Software', duration: '8–10 semanas',
+    quote: 'Sin esta base, todo lo que sigue es scripting glorificado. La mayoría de los "AI engineers" fracasan aquí, no en el modelo.',
+    objective: 'Dominar Python a nivel profesional, diseño de sistemas, testing, CI/CD y SQL como ciudadano de primera clase.',
     resources: [
       { name: 'CS50 (Harvard)', desc: 'Intro a CS con rigor', format: 'Video + Labs', url: 'https://cs50.harvard.edu/x/' },
       { name: 'Missing Semester (MIT)', desc: 'Shell, Git, debugging, profiling', format: 'Video + Exercises', url: 'https://missing.csail.mit.edu/' },
       { name: 'Python for Everybody', desc: 'UMich / Dr. Chuck', format: 'Video + Libro', url: 'https://www.py4e.com/' },
       { name: 'Real Python', desc: 'Concurrencia, profiling, testing', format: 'Tutoriales', url: 'https://realpython.com/' },
       { name: 'SQLBolt', desc: 'SQL interactivo desde cero', format: 'Ejercicios web', url: 'https://sqlbolt.com/' },
-      { name: 'Select Star SQL', desc: 'SQL analitico con dataset real', format: 'Libro interactivo', url: 'https://selectstarsql.com/' },
+      { name: 'Select Star SQL', desc: 'SQL analítico con dataset real', format: 'Libro interactivo', url: 'https://selectstarsql.com/' },
       { name: 'System Design Primer', desc: 'Trade-offs, escalabilidad', format: 'GitHub', url: 'https://github.com/donnemartin/system-design-primer' },
-      { name: 'DDIA (Kleppmann)', desc: 'Resumenes comunitarios', format: 'Notas', url: 'https://github.com/keyvanakbary/learning-notes/blob/master/books/designing-data-intensive-applications.md' },
+      { name: 'DDIA (Kleppmann)', desc: 'Resúmenes comunitarios', format: 'Notas', url: 'https://github.com/keyvanakbary/learning-notes/blob/master/books/designing-data-intensive-applications.md' },
     ],
-    extra: { type: 'deliverable', text: 'Un proyecto Python con tests (pytest), CI/CD (GitHub Actions), SQL, y documentacion.' },
+    extra: { type: 'deliverable', text: 'Un proyecto Python con tests (pytest), CI/CD (GitHub Actions), SQL, y documentación.' },
   },
   {
     id: 'fase-1', num: '1', icon: 'function', color: 'secondary',
-    title: 'Fundamentos Matematicos', duration: '6–8 semanas',
-    quote: 'No para resolver ejercicios, sino para entender que hace un optimizer y por que ciertos modelos colapsan.',
-    objective: 'Algebra lineal, calculo, probabilidad y estadistica bayesiana orientados a ML. Teoria de la informacion basica.',
+    title: 'Fundamentos Matemáticos', duration: '6–8 semanas',
+    quote: 'No para resolver ejercicios, sino para entender qué hace un optimizer y por qué ciertos modelos colapsan.',
+    objective: 'Álgebra lineal, cálculo, probabilidad y estadística bayesiana orientados a ML. Teoría de la información, en lo básico.',
     resources: [
       { name: '3Blue1Brown — Linear Algebra', desc: 'Essence of Linear Algebra', format: 'Video (16 eps)', url: 'https://www.3blue1brown.com/topics/linear-algebra' },
       { name: '3Blue1Brown — Calculus', desc: 'Essence of Calculus', format: 'Video (12 eps)', url: 'https://www.3blue1brown.com/topics/calculus' },
       { name: '3Blue1Brown — Neural Nets', desc: 'Backprop visual', format: 'Video (6+ eps)', url: 'https://www.3blue1brown.com/topics/neural-networks' },
-      { name: 'Khan Academy', desc: 'Estadistica y Probabilidad', format: 'Video + Ejercicios', url: 'https://www.khanacademy.org/math/statistics-probability' },
+      { name: 'Khan Academy', desc: 'Estadística y Probabilidad', format: 'Video + Ejercicios', url: 'https://www.khanacademy.org/math/statistics-probability' },
       { name: 'StatQuest', desc: 'Bayesian, distribuciones, tests', format: 'YouTube', url: 'https://www.youtube.com/@statquest' },
       { name: 'MML Book', desc: 'Mathematics for Machine Learning', format: 'Libro PDF gratis', url: 'https://mml-book.github.io/' },
       { name: 'Chris Olah — Info Theory', desc: 'Visual Information Theory', format: 'Blog post', url: 'https://colah.github.io/posts/2015-09-Visual-Information/' },
     ],
-    extra: { type: 'concept', text: 'Entropia, KL divergence, cross-entropy loss — si no entiendes por que tu loss function es esa, estas operando a ciegas.' },
+    extra: { type: 'concept', text: 'Entropía, KL divergence, cross-entropy loss — si no entiendes por que tu loss function es esa, estas operando a ciegas.' },
   },
   {
     id: 'fase-2', num: '2', icon: 'analytics', color: 'tertiary',
-    title: 'ML Clasico', duration: '6–8 semanas',
-    quote: 'El objetivo no es "saber sklearn". Es desarrollar la intuicion de cuando NO usar deep learning.',
-    objective: 'Bias-variance, regularizacion, feature engineering, seleccion de modelos. Metricas en contexto de negocio.',
+    title: 'ML Clásico', duration: '6–8 semanas',
+    quote: 'El objetivo no es "saber sklearn". Es desarrollar la intuición de cuándo NO usar deep learning.',
+    objective: 'Bias-variance, regularización, feature engineering, selección de modelos. Métricas en contexto de negocio.',
     resources: [
-      { name: 'Stanford CS229', desc: 'ML teorico riguroso (Andrew Ng)', format: 'Video', url: 'https://www.youtube.com/playlist?list=PLoROMvodv4rMiGQp3WXShtMGgzqpfVfbU' },
+      { name: 'Stanford CS229', desc: 'ML teórico riguroso (Andrew Ng)', format: 'Video', url: 'https://www.youtube.com/playlist?list=PLoROMvodv4rMiGQp3WXShtMGgzqpfVfbU' },
       { name: 'CS229 Notas', desc: 'Notas de curso oficiales', format: 'PDF', url: 'https://cs229.stanford.edu/' },
       { name: 'ML Zoomcamp', desc: 'End-to-end con deployment', format: 'Video + Repo', url: 'https://github.com/DataTalksClub/machine-learning-zoomcamp' },
       { name: 'StatQuest — ML', desc: 'Playlist completa de ML', format: 'YouTube', url: 'https://www.youtube.com/playlist?list=PLblh5JKOoLUICTaGLRoHQDuF_7q2GfuJF' },
       { name: 'Scikit-learn Guide', desc: 'La mejor doc de ML aplicado', format: 'Docs', url: 'https://scikit-learn.org/stable/user_guide.html' },
-      { name: 'Kaggle Learn', desc: 'ML practico con notebooks', format: 'Notebooks', url: 'https://www.kaggle.com/learn' },
+      { name: 'Kaggle Learn', desc: 'ML práctico con notebooks', format: 'Notebooks', url: 'https://www.kaggle.com/learn' },
     ],
-    extra: { type: 'questions', items: ['Cuando random forest supera a un modelo lineal y por que?', 'Que significa recall 0.95 en fraude vs. recomendador?', 'Como detectas data leakage en cross-validation?'] },
+    extra: { type: 'questions', items: ['¿Cuándo random forest supera a un modelo lineal, y por qué?', '¿Qué significa recall 0.95 en fraude frente a un recomendador?', '¿Cómo detectas data leakage en cross-validation?'] },
   },
   {
     id: 'fase-3', num: '3', icon: 'neurology', color: 'primary',
     title: 'Deep Learning', duration: '8–10 semanas',
-    quote: 'Transformers desde la mecanica, no desde la API.',
+    quote: 'Transformers desde la mecánica, no desde la API.',
     objective: 'Attention, positional encoding, scaling laws. Training dynamics. PyTorch como herramienta, no como identidad.',
     resources: [
       { name: 'Karpathy — Zero to Hero', desc: 'Neural Networks from scratch', format: 'YouTube (7+ hrs)', url: 'https://karpathy.ai/zero-to-hero.html' },
@@ -63,7 +69,7 @@ const phases = [
       { name: 'Stanford CS224N', desc: 'NLP with Deep Learning', format: 'Video', url: 'https://web.stanford.edu/class/cs224n/' },
       { name: 'Illustrated Transformer', desc: 'Jay Alammar — visual guide', format: 'Blog', url: 'https://jalammar.github.io/illustrated-transformer/' },
       { name: 'Attention Is All You Need', desc: 'Paper original', format: 'Paper', url: 'https://arxiv.org/abs/1706.03762' },
-      { name: 'PyTorch Tutorials', desc: 'Documentacion oficial', format: 'Docs', url: 'https://pytorch.org/tutorials/' },
+      { name: 'PyTorch Tutorials', desc: 'Documentación oficial', format: 'Docs', url: 'https://pytorch.org/tutorials/' },
       { name: 'd2l.ai', desc: 'Dive into Deep Learning', format: 'Libro interactivo', url: 'https://d2l.ai/' },
     ],
     extra: { type: 'reading', items: [
@@ -73,31 +79,31 @@ const phases = [
   },
   {
     id: 'fase-4', num: '4', icon: 'smart_toy', color: 'secondary',
-    title: 'Ingenieria de LLMs', duration: '8–10 semanas',
-    quote: 'Tres ramas: prompting, RAG, fine-tuning. La decision de cual aplicar es mas importante que saber ejecutar las tres.',
-    objective: 'Dominar prompting como ingenieria, RAG como arquitectura de sistemas, fine-tuning como ultimo recurso informado.',
+    title: 'Ingeniería de LLMs', duration: '8–10 semanas',
+    quote: 'Tres ramas: prompting, RAG, fine-tuning. La decisión de cuál aplicar es más importante que saber ejecutar las tres.',
+    objective: 'Dominar prompting como ingeniería, RAG como arquitectura de sistemas, fine-tuning como último recurso informado.',
     resources: [
       { name: 'HF LLM Course', desc: 'Hugging Face, actualizado 2025', format: 'Curso interactivo', url: 'https://huggingface.co/learn/llm-course/' },
-      { name: 'LLM Zoomcamp', desc: 'RAG, fine-tuning, produccion', format: 'Video + Repo', url: 'https://github.com/DataTalksClub/llm-zoomcamp' },
+      { name: 'LLM Zoomcamp', desc: 'RAG, fine-tuning, producción', format: 'Video + Repo', url: 'https://github.com/DataTalksClub/llm-zoomcamp' },
       { name: 'Anthropic Prompt Guide', desc: 'Prompt engineering oficial', format: 'Docs', url: 'https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/' },
-      { name: 'OpenAI Cookbook', desc: 'Patterns de produccion', format: 'GitHub', url: 'https://github.com/openai/openai-cookbook' },
-      { name: 'Maximizing LLM Perf', desc: 'Survey de tecnicas (OpenAI)', format: 'Video', url: 'https://www.youtube.com/watch?v=ahnGLM-RC1Y' },
+      { name: 'OpenAI Cookbook', desc: 'Patterns de producción', format: 'GitHub', url: 'https://github.com/openai/openai-cookbook' },
+      { name: 'Maximizing LLM Perf', desc: 'Survey de técnicas (OpenAI)', format: 'Video', url: 'https://www.youtube.com/watch?v=ahnGLM-RC1Y' },
       { name: 'RAG Chunking (Pinecone)', desc: 'Chunking strategies', format: 'Blog', url: 'https://www.pinecone.io/learn/chunking-strategies/' },
       { name: 'LoRA Paper', desc: 'Low-Rank Adaptation', format: 'Paper', url: 'https://arxiv.org/abs/2106.09685' },
       { name: 'PEFT Docs', desc: 'Hugging Face PEFT', format: 'Docs', url: 'https://huggingface.co/docs/peft/' },
-      { name: 'LLM-Twin Course', desc: 'RAG en produccion', format: 'GitHub', url: 'https://github.com/decodingml/llm-twin-course' },
+      { name: 'LLM-Twin Course', desc: 'RAG en producción', format: 'GitHub', url: 'https://github.com/decodingml/llm-twin-course' },
     ],
     extra: { type: 'decision' },
   },
   {
     id: 'fase-5', num: '5', icon: 'deployed_code', color: 'tertiary',
-    title: 'AI en Produccion', duration: '6–8 semanas',
-    quote: 'Aqui muere el 90% de los "AI engineers" del mercado.',
-    objective: 'Serving, optimizacion de inferencia, observabilidad, costos como restriccion de diseno, orquestacion de agentes.',
+    title: 'AI en Producción', duration: '6–8 semanas',
+    quote: 'Aquí muere el 90% de los "AI engineers" del mercado.',
+    objective: 'Serving, optimización de inferencia, observabilidad, costos como restricción de diseño, orquestación de agentes.',
     resources: [
       { name: 'MLOps Zoomcamp', desc: 'MLflow, Docker, monitoring', format: 'Video + Repo', url: 'https://github.com/DataTalksClub/mlops-zoomcamp' },
       { name: 'Made With ML', desc: 'MLOps end-to-end', format: 'Curso web', url: 'https://madewithml.com/' },
-      { name: 'Full Stack DL', desc: 'Produccion de ML (2022)', format: 'Video', url: 'https://fullstackdeeplearning.com/course/2022/' },
+      { name: 'Full Stack DL', desc: 'Producción de ML (2022)', format: 'Video', url: 'https://fullstackdeeplearning.com/course/2022/' },
       { name: 'ML Engineering (Ng)', desc: 'Coursera audit gratis', format: 'Video', url: 'https://www.coursera.org/specializations/machine-learning-engineering-for-production-mlops' },
       { name: 'Evidently AI', desc: 'ML Monitoring Course', format: 'Video + GitHub', url: 'https://www.evidentlyai.com/ml-observability-course' },
       { name: 'vLLM', desc: 'Serving de alta performance', format: 'Docs', url: 'https://docs.vllm.ai/' },
@@ -110,7 +116,7 @@ const phases = [
     id: 'fase-6', num: '6', icon: 'shield', color: 'primary',
     title: 'Seguridad y Gobernanza', duration: '4–6 semanas',
     quote: 'Lo que nadie ensena y todos necesitan.',
-    objective: 'Prompt injection, evaluacion sistematica, red teaming, gobernanza de datos, etica practica.',
+    objective: 'Prompt injection, evaluación sistematica, red teaming, gobernanza de datos, etica práctica.',
     resources: [
       { name: 'OWASP Top 10 LLM', desc: 'Guia 2025', format: 'Guia + PDF', url: 'https://owasp.org/www-project-top-10-for-large-language-model-applications/' },
       { name: 'OWASP GenAI', desc: 'Detalle por vulnerabilidad', format: 'Web', url: 'https://genai.owasp.org/' },
@@ -120,7 +126,7 @@ const phases = [
       { name: 'Anthropic Research', desc: 'Constitutional AI, RLHF', format: 'Papers', url: 'https://www.anthropic.com/research' },
       { name: 'EU AI Act', desc: 'Resumen ejecutivo', format: 'Docs', url: 'https://artificialintelligenceact.eu/' },
     ],
-    extra: { type: 'skills', items: ['Ejecutar red team basico contra tu app LLM', 'Implementar guardrails de entrada/salida', 'Disenar evaluation framework con metricas humanas + automaticas', 'Identificar PII en pipelines de datos'] },
+    extra: { type: 'skills', items: ['Ejecutar red team básico contra tu app LLM', 'Implementar guardrails de entrada/salida', 'Disenar evaluation framework con métricas humanas + automaticas', 'Identificar PII en pipelines de datos'] },
   },
 ];
 
@@ -149,7 +155,7 @@ const communities = [
 ---
 
 <Layout
-  title="Ruta AI Software Engineer — Formacion Gratuita"
+  title="Ruta AI Software Engineer — Formación Gratuita"
   description="Ruta profesional de 12-18 meses para convertirte en AI Software Engineer. Todos los recursos son gratuitos y verificados."
 >
   <!-- Top Nav -->
@@ -174,7 +180,7 @@ const communities = [
   <!-- Side Nav -->
   <aside class="fixed left-0 top-0 h-full flex-col pt-20 pb-8 px-4 bg-slate-50 w-64 hidden lg:flex z-40" style="box-shadow: 0px 24px 48px rgba(17, 29, 35, 0.06)">
     <div class="mb-8 px-2">
-      <p class="text-[10px] uppercase tracking-widest text-tertiary font-bold mb-1">Formacion Alternativa</p>
+      <p class="text-[10px] uppercase tracking-widest text-tertiary font-bold mb-1">Formación Alternativa</p>
       <h3 class="font-headline font-bold text-cyan-800 text-lg">AI Software Engineer</h3>
       <p class="text-xs text-slate-500">Costo cero &middot; 12–18 meses</p>
     </div>
@@ -191,7 +197,7 @@ const communities = [
     </nav>
     <div class="mt-auto p-4 bg-surface-container-low rounded-2xl">
       <p class="text-xs font-semibold text-primary mb-2">Prerrequisitos</p>
-      <p class="text-[10px] text-on-surface-variant leading-relaxed mb-3">Saber programar en al menos un lenguaje. Algebra basica.</p>
+      <p class="text-[10px] text-on-surface-variant leading-relaxed mb-3">Saber programar en al menos un lenguaje. Álgebra básica.</p>
       <a href="#fase-0" class="block w-full py-2 bg-gradient-to-r from-primary to-primary-container text-white text-xs font-bold rounded-xl text-center shadow-lg shadow-primary/20 active:scale-95 transition-all">
         Comenzar Ruta
       </a>
@@ -208,15 +214,15 @@ const communities = [
           <div>
             <span class="text-tertiary font-label font-semibold text-sm tracking-widest uppercase mb-2 block">Ruta Profesional</span>
             <h1 class="text-5xl font-extrabold text-on-surface tracking-tight leading-[1.1]">AI Software <span class="text-primary italic">Engineer</span></h1>
-            <p class="text-on-surface-variant text-lg max-w-2xl mt-4">Formacion alternativa de alta calidad. Todos los recursos son de acceso gratuito verificado al momento de publicacion.</p>
+            <p class="text-on-surface-variant text-lg max-w-2xl mt-4">Formación alternativa de alta calidad. Todos los recursos son de acceso gratuito, verificados en el momento de publicación.</p>
           </div>
           <div class="flex gap-4">
             <div class="px-6 py-4 bg-surface-container-lowest rounded-xl shadow-card border border-outline-variant/10">
-              <p class="text-xs font-label text-slate-500 uppercase tracking-widest mb-1">Duracion</p>
+              <p class="text-xs font-label text-slate-500 uppercase tracking-widest mb-1">Duración</p>
               <p class="text-2xl font-headline font-bold text-secondary">12–18 meses</p>
             </div>
             <div class="px-6 py-4 bg-surface-container-lowest rounded-xl shadow-card border border-outline-variant/10">
-              <p class="text-xs font-label text-slate-500 uppercase tracking-widest mb-1">Dedicacion</p>
+              <p class="text-xs font-label text-slate-500 uppercase tracking-widest mb-1">Dedicación</p>
               <p class="text-2xl font-headline font-bold text-primary">~15h/sem</p>
             </div>
           </div>
@@ -318,12 +324,12 @@ const communities = [
             <div class="bg-surface-container-low rounded-2xl p-6 border border-outline-variant/10">
               <div class="flex items-center gap-2 mb-4">
                 <span class="material-symbols-outlined text-secondary">decision</span>
-                <span class="text-xs font-bold text-secondary uppercase tracking-wider">Decision critica que debes dominar</span>
+                <span class="text-xs font-bold text-secondary uppercase tracking-wider">Decisión crítica que debes dominar</span>
               </div>
               <pre class="text-sm text-on-surface leading-relaxed font-body overflow-x-auto">{`¿El conocimiento cambia frecuentemente?
   → Si → RAG
   → No → ¿El comportamiento del modelo necesita cambiar?
-            → Si → ¿Tienes >1000 ejemplos de calidad?
+            → Sí → ¿Tienes >1000 ejemplos de calidad?
                       → Si → Fine-tuning (LoRA/QLoRA)
                       → No → Few-shot prompting
             → No → Zero-shot con system prompt optimizado`}</pre>
@@ -334,7 +340,7 @@ const communities = [
             <div class="bg-tertiary/5 rounded-2xl p-5 border border-tertiary/20">
               <div class="flex items-center gap-2 mb-3">
                 <span class="material-symbols-outlined text-tertiary">monitoring</span>
-                <span class="text-xs font-bold text-tertiary uppercase tracking-wider">Metricas que debes calcular</span>
+                <span class="text-xs font-bold text-tertiary uppercase tracking-wider">Métricas que debes calcular</span>
               </div>
               <div class="space-y-2">
                 {phase.extra.items.map((m) => (
@@ -374,20 +380,20 @@ const communities = [
           </div>
           <div>
             <span class="text-xs font-bold text-primary uppercase tracking-widest">Fase Transversal &middot; Desde Fase 2</span>
-            <h2 class="text-3xl font-extrabold text-on-surface tracking-tight">Lectura Critica de Papers</h2>
+            <h2 class="text-3xl font-extrabold text-on-surface tracking-tight">Lectura Crítica de Papers</h2>
           </div>
         </div>
 
         <div class="glass-panel rounded-2xl p-5 mb-6 border border-outline-variant/20">
-          <p class="text-on-surface-variant italic">&ldquo;No como bullet point sino como practica semanal. 2-3 papers/semana.&rdquo;</p>
+          <p class="text-on-surface-variant italic">&ldquo;No como bullet point sino como práctica semanal. 2-3 papers/semana.&rdquo;</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-8">
           {[
             { name: 'ArXiv Sanity Lite', desc: 'Karpathy', format: 'Web', url: 'https://arxiv-sanity-lite.com/' },
             { name: 'Papers With Code', desc: 'Papers + implementaciones + benchmarks', format: 'Web', url: 'https://paperswithcode.com/' },
-            { name: 'Yannic Kilcher', desc: 'Paper reviews con analisis critico', format: 'YouTube', url: 'https://www.youtube.com/@YannicKilcher' },
-            { name: 'Two Minute Papers', desc: 'Overview rapido de papers nuevos', format: 'YouTube', url: 'https://www.youtube.com/@TwoMinutePapers' },
+            { name: 'Yannic Kilcher', desc: 'Paper reviews con análisis crítico', format: 'YouTube', url: 'https://www.youtube.com/@YannicKilcher' },
+            { name: 'Two Minute Papers', desc: 'Overview rápido de papers nuevos', format: 'YouTube', url: 'https://www.youtube.com/@TwoMinutePapers' },
             { name: 'How to Read a Paper', desc: 'Keshav — 3 paginas esenciales', format: 'PDF', url: 'https://svr-sk818-web.cl.cam.ac.uk/keshav/papers/07/paper-reading.pdf' },
           ].map((r) => (
             <a href={r.url} target="_blank" rel="noopener" class="group bg-surface-container-lowest rounded-xl p-4 shadow-sm hover:shadow-card border border-transparent hover:border-outline-variant/30 transition-all">
@@ -403,12 +409,12 @@ const communities = [
 
         <!-- Reading Method -->
         <div class="bg-surface-container-low rounded-2xl p-6">
-          <p class="text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-4">Metodo de lectura</p>
+          <p class="text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-4">Método de lectura</p>
           <div class="space-y-4">
             {[
-              { step: '1', time: '5 min', title: 'Primera pasada', desc: 'Abstract, figuras, conclusiones. ¿Cual es el claim?' },
-              { step: '2', time: '30 min', title: 'Segunda pasada', desc: 'Metodologia, baselines, ablations. ¿La evidencia soporta el claim?' },
-              { step: '3', time: 'Si vale', title: 'Tercera pasada', desc: '¿Es reproducible? ¿Que asumen que no mencionan? ¿Aplica a tu contexto?' },
+              { step: '1', time: '5 min', title: 'Primera pasada', desc: 'Abstract, figuras, conclusiones. ¿Cuál es el claim?' },
+              { step: '2', time: '30 min', title: 'Segunda pasada', desc: 'Metodología, baselines, ablations. ¿La evidencia soporta el claim?' },
+              { step: '3', time: 'Si vale la pena', title: 'Tercera pasada', desc: '¿Es reproducible? ¿Qué asumen que no mencionan? ¿Aplica a tu contexto?' },
             ].map((p) => (
               <div class="flex items-start gap-4">
                 <div class="w-10 h-10 rounded-lg bg-surface-container-highest flex items-center justify-center flex-shrink-0">
@@ -433,9 +439,9 @@ const communities = [
             <h3 class="text-3xl font-bold font-headline mb-4">Secuencia y Dependencias</h3>
             <pre class="text-sm text-on-primary-container/90 leading-relaxed font-body overflow-x-auto">{`Fase 0 (SWE) ──────────────────────────────┐
                                            │
-Fase 1 (Matematicas) ─────┐               │
-                           ├── Fase 3 (DL) ── Fase 4 (LLMs) ── Fase 5 (Produccion)
-Fase 2 (ML Clasico) ──────┘               │                          │
+Fase 1 (Matemáticas) ─────┐               │
+                           ├── Fase 3 (DL) ── Fase 4 (LLMs) ── Fase 5 (Producción)
+Fase 2 (ML Clásico) ──────┘               │                          │
                                            │                          │
                                            └───── Fase 6 (Seguridad) ─┘
 
@@ -469,10 +475,10 @@ Fase Transversal (Papers) ── desde Fase 2 en adelante`}</pre>
         <h2 class="text-3xl font-extrabold text-on-surface tracking-tight mb-6">Lo que NO incluye</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
           {[
-            { item: 'C++ generico', reason: 'Solo relevante si vas a escribir kernels CUDA. Si llegas ahi, ya sabras que lo necesitas.' },
+            { item: 'C++ genérico', reason: 'Solo relevante si vas a escribir kernels CUDA. Si llegas ahi, ya sabras que lo necesitas.' },
             { item: 'LangChain como skill central', reason: 'Es una abstraccion que cambia cada mes. Entiende los patterns subyacentes.' },
-            { item: 'Certificaciones cloud especificas', reason: 'Aprende los conceptos (containers, serverless) y el vendor sera intercambiable.' },
-            { item: 'Prompt engineering aislado', reason: 'Integrado en Fase 4 como decision de ingenieria, no como habilidad decorativa.' },
+            { item: 'Certificaciones cloud especificas', reason: 'Aprende los conceptos (containers, serverless) y el vendor será intercambiable.' },
+            { item: 'Prompt engineering aislado', reason: 'Integrado en Fase 4 como decisión de ingeniería, no como habilidad decorativa.' },
           ].map((e) => (
             <div class="bg-surface-container-lowest rounded-xl p-5 shadow-sm border border-outline-variant/10">
               <div class="flex items-center gap-2 mb-2">
@@ -487,7 +493,7 @@ Fase Transversal (Papers) ── desde Fase 2 en adelante`}</pre>
 
       <!-- Footer -->
       <footer class="text-center text-sm text-on-surface-variant pt-8 border-t border-outline-variant/20">
-        <p>Ultima actualizacion: abril 2026 &middot; Todos los recursos son de acceso gratuito verificado.</p>
+        <p>Versión {version.version} &middot; última actualización: {actualizado} &middot; todos los recursos son de acceso gratuito verificado.</p>
         <p class="mt-2">
           Creado por <a href="https://github.com/gonzalezulises" target="_blank" rel="noopener" class="text-primary font-semibold hover:underline">Ulises Gonzalez</a>
         </p>

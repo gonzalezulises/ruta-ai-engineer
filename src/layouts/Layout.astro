@@ -1,10 +1,20 @@
 ---
+import version from '../../version.json';
+
 interface Props {
   title: string;
   description: string;
 }
 
 const { title, description } = Astro.props;
+
+// Fecha larga en español, a partir de la fecha ISO sellada en version.json.
+// Se construye a mano para no depender de que el entorno de build tenga la
+// configuración regional es-ES instalada.
+const MESES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio',
+  'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+const [anio, mes, dia] = version.actualizado.split('-').map(Number);
+const actualizadoLargo = `${dia} de ${MESES[mes - 1]} de ${anio}`;
 ---
 
 <!doctype html>
@@ -13,6 +23,8 @@ const { title, description } = Astro.props;
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light" />
+    <meta name="theme-color" content="#F0EDE5" />
     <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
 
@@ -20,14 +32,19 @@ const { title, description } = Astro.props;
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <!-- Versión del curso: el hub las lee para comprobar que lo que anuncia
+         coincide con lo que este sitio sirve de verdad. -->
+    <meta name="curso-version" content={version.version} />
+    <meta name="curso-actualizado" content={version.actualizado} />
+
+    <!-- Las familias de texto se nombran y caen al stack del sistema, como en el
+         resto de los cursos: la página no depende de una CDN para renderizar. -->
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
 
     <title>{title}</title>
   </head>
-  <body class="bg-surface text-on-surface antialiased">
+  <body class="bg-surface text-on-surface antialiased" data-version={version.version} data-actualizado={actualizadoLargo}>
     <slot />
   </body>
 </html>
